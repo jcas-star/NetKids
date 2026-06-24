@@ -1,0 +1,320 @@
+:root{
+  --bg-1:#0f1029;
+  --bg-2:#1e1b4b;
+  --accent:#6366f1;
+  --accent-2:#06b6d4;
+  --accent-3:#f59e0b;
+  --good:#22c55e;
+  --bad:#ef4444;
+  --card:#ffffff;
+  --ink:#1e1b2e;
+  --ink-soft:#5b5876;
+  --radius:18px;
+  --shadow:0 12px 30px rgba(15,16,41,.25);
+  font-size:16px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;height:100%;}
+body{
+  font-family:"Segoe UI", "Trebuchet MS", system-ui, sans-serif;
+  background:radial-gradient(circle at 20% 0%, #312e81 0%, var(--bg-1) 55%, var(--bg-2) 100%);
+  color:var(--ink);
+  min-height:100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+#app{min-height:100vh;}
+
+.screen{display:none;min-height:100vh;padding:18px;animation:fade .25s ease;}
+.screen.active{display:flex;flex-direction:column;}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- HOME ---------- */
+.home-wrap{max-width:560px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:18px;align-items:center;padding-top:6px;}
+.brand{text-align:center;color:#fff;}
+.brand-logo{font-size:54px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35));}
+.brand h1{margin:6px 0 4px;font-size:2.3rem;letter-spacing:.5px;background:linear-gradient(90deg,#a5b4fc,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.tagline{margin:0;color:#c7d2fe;font-size:.95rem;}
+
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;width:100%;}
+.home-card h2{font-size:1rem;margin:0 0 10px;color:var(--ink);}
+.home-card h2:not(:first-child){margin-top:18px;}
+
+.course-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.course-btn{
+  border:2px solid #e5e7eb;background:#f8fafc;border-radius:14px;padding:14px 0;
+  font-weight:700;font-size:1.1rem;cursor:pointer;transition:.15s;color:var(--ink-soft);
+}
+.course-btn:hover{border-color:var(--accent);}
+.course-btn.selected{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(99,102,241,.35);}
+
+.avatar-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+.avatar-btn{font-size:1.6rem;border:2px solid #e5e7eb;background:#f8fafc;border-radius:14px;padding:10px 0;cursor:pointer;transition:.15s;}
+.avatar-btn:hover{border-color:var(--accent-2);}
+.avatar-btn.selected{background:linear-gradient(135deg,#fde68a,#f59e0b);border-color:transparent;box-shadow:0 6px 16px rgba(245,158,11,.35);}
+
+.name-field{display:flex;flex-direction:column;gap:6px;font-size:.85rem;color:var(--ink-soft);margin-top:16px;font-weight:600;}
+.name-field input{
+  font-family:inherit;font-size:1rem;padding:12px 14px;border-radius:12px;border:2px solid #e5e7eb;outline:none;
+}
+.name-field input:focus{border-color:var(--accent);}
+
+.btn{border:none;border-radius:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 8px 20px rgba(99,102,241,.35);}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;box-shadow:none;}
+.btn-primary:not(:disabled):hover{transform:translateY(-1px);}
+.btn-secondary{background:#eef2ff;color:#3730a3;}
+.btn-big{width:100%;padding:16px;font-size:1.05rem;margin-top:20px;}
+.footnote{color:#a5b4fc;font-size:.75rem;text-align:center;max-width:420px;}
+
+/* ---------- TOPBAR ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;color:#fff;margin-bottom:10px;gap:10px;}
+.topbar h2{font-size:1.05rem;margin:0;flex:1;text-align:center;}
+.icon-btn{background:rgba(255,255,255,.12);border:none;border-radius:12px;width:42px;height:42px;font-size:1.2rem;color:#fff;cursor:pointer;}
+.icon-btn:hover{background:rgba(255,255,255,.22);}
+.profile-chip{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border-radius:20px;padding:6px 14px;font-weight:600;font-size:.85rem;}
+.chip-course{background:rgba(255,255,255,.25);border-radius:10px;padding:2px 8px;font-size:.75rem;}
+
+/* ---------- PROGRESS ---------- */
+.progress-banner{display:flex;align-items:center;gap:10px;color:#e0e7ff;font-size:.8rem;margin-bottom:14px;}
+.progress-track{flex:1;height:10px;background:rgba(255,255,255,.15);border-radius:8px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent-2),var(--good));width:0%;transition:width .4s;}
+
+/* ---------- MODULES ---------- */
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;flex:1;}
+.module-card{
+  border-radius:var(--radius);padding:20px;color:#fff;cursor:pointer;position:relative;overflow:hidden;
+  box-shadow:var(--shadow);transition:.18s;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;
+}
+.module-card:hover{transform:translateY(-3px);}
+.module-card .m-icon{font-size:2rem;}
+.module-card h3{margin:8px 0 2px;font-size:1.1rem;}
+.module-card p{margin:0;font-size:.82rem;opacity:.9;}
+.module-card .m-progress{font-size:.75rem;background:rgba(0,0,0,.2);align-self:flex-start;border-radius:10px;padding:3px 10px;margin-top:10px;}
+.mod-1{background:linear-gradient(135deg,#0ea5e9,#0369a1);}
+.mod-2{background:linear-gradient(135deg,#f59e0b,#b45309);}
+.mod-3{background:linear-gradient(135deg,#10b981,#047857);}
+.mod-4{background:linear-gradient(135deg,#ef4444,#991b1b);}
+
+/* ---------- MISSION LIST ---------- */
+.module-desc{color:#dfe3ff;font-size:.88rem;margin:0 0 14px;}
+.mission-list{display:flex;flex-direction:column;gap:10px;}
+.mission-item{
+  background:var(--card);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.15);
+}
+.mission-item.locked{opacity:.5;cursor:not-allowed;}
+.mission-item .m-num{width:34px;height:34px;border-radius:50%;background:#eef2ff;color:#3730a3;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;}
+.mission-item.done .m-num{background:var(--good);color:#fff;}
+.mission-item .m-body{flex:1;}
+.mission-item .m-body h4{margin:0 0 2px;font-size:.95rem;}
+.mission-item .m-body p{margin:0;font-size:.78rem;color:var(--ink-soft);}
+.mission-item .m-status{font-size:1.3rem;}
+
+/* ---------- MISSION STAGE ---------- */
+.mission-stage{flex:1;display:flex;flex-direction:column;gap:16px;}
+.stage-card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
+.stage-card h3{margin-top:0;}
+.instructions{background:#eef2ff;color:#312e81;border-radius:12px;padding:12px 16px;font-size:.88rem;display:flex;gap:10px;align-items:flex-start;}
+.instructions .bubble-icon{font-size:1.3rem;}
+
+.device-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:10px 0;}
+.device{
+  background:#f8fafc;border:2px solid #e5e7eb;border-radius:16px;padding:14px;text-align:center;width:96px;cursor:grab;user-select:none;transition:.15s;
+}
+.device.dragging{opacity:.4;}
+.device.connected{border-color:var(--good);background:#ecfdf5;}
+.device .d-icon{font-size:2rem;}
+.device .d-label{font-size:.72rem;margin-top:4px;color:var(--ink-soft);font-weight:600;}
+
+.drop-zone{
+  border:3px dashed #cbd5e1;border-radius:18px;min-height:120px;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:6px;color:#94a3b8;font-size:.85rem;font-weight:600;transition:.15s;text-align:center;padding:10px;
+}
+.drop-zone.over{border-color:var(--accent);background:#eef2ff;color:var(--accent);}
+.drop-zone.filled{border-style:solid;border-color:var(--good);background:#ecfdf5;color:#047857;}
+.zones-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;}
+
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+.choice-btn{
+  background:#f8fafc;border:2px solid #e5e7eb;border-radius:14px;padding:14px;font-family:inherit;font-size:.92rem;
+  cursor:pointer;text-align:left;font-weight:600;color:var(--ink);transition:.15s;
+}
+.choice-btn:hover{border-color:var(--accent);}
+.choice-btn.correct{background:#ecfdf5;border-color:var(--good);}
+.choice-btn.wrong{background:#fef2f2;border-color:var(--bad);}
+
+.feedback-box{border-radius:12px;padding:14px 16px;font-size:.88rem;display:none;gap:10px;align-items:flex-start;}
+.feedback-box.show{display:flex;}
+.feedback-box.ok{background:#ecfdf5;color:#047857;}
+.feedback-box.fail{background:#fff7ed;color:#9a3412;}
+
+.career-callout{
+  background:linear-gradient(135deg,#312e81,#1e1b4b);color:#e0e7ff;border-radius:14px;padding:14px 16px;font-size:.84rem;
+  display:flex;gap:10px;align-items:flex-start;
+}
+
+/* packet animation */
+.packet-track{position:relative;height:90px;background:#0f172a;border-radius:14px;overflow:hidden;margin:10px 0;}
+.packet-node{position:absolute;top:50%;transform:translateY(-50%);font-size:1.7rem;}
+.packet-line{position:absolute;top:50%;height:3px;background:#475569;left:0;right:0;}
+.packet-dot{position:absolute;top:50%;width:16px;height:16px;border-radius:50%;background:var(--accent-3);transform:translate(-50%,-50%);box-shadow:0 0 10px var(--accent-3);transition:left 1s linear;}
+
+.cipher-box{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;font-family:monospace;font-size:1.3rem;letter-spacing:2px;background:#0f172a;color:#67e8f9;border-radius:12px;padding:16px;}
+
+.mission-controls{display:flex;gap:10px;justify-content:flex-end;}
+
+/* ---------- SANDBOX ---------- */
+.sandbox-wrap{display:flex;gap:12px;flex:1;flex-wrap:wrap;}
+.device-tray{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;background:rgba(255,255,255,.08);border-radius:16px;padding:12px;align-content:flex-start;max-width:100%;}
+.sandbox-canvas-wrap{position:relative;flex:1;min-width:280px;min-height:340px;background:#0f172a;border-radius:18px;overflow:hidden;}
+.sandbox-canvas{position:absolute;inset:0;}
+.sandbox-lines{position:absolute;inset:0;pointer-events:none;width:100%;height:100%;}
+.sb-device{
+  position:absolute;width:64px;text-align:center;cursor:grab;user-select:none;color:#fff;font-size:.65rem;font-weight:700;
+}
+.sb-device .d-icon{font-size:1.9rem;display:block;}
+.sb-device.linking{outline:3px solid var(--accent-3);border-radius:12px;}
+.tray-device{background:rgba(255,255,255,.12);border-radius:12px;padding:8px 10px;text-align:center;color:#fff;font-size:.7rem;cursor:grab;width:64px;}
+.tray-device .d-icon{font-size:1.6rem;display:block;}
+
+.sandbox-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.sandbox-actions input{flex:1;min-width:160px;border-radius:12px;border:none;padding:12px 14px;font-family:inherit;}
+.saved-list{margin-top:14px;display:flex;flex-direction:column;gap:8px;}
+.saved-item{background:rgba(255,255,255,.1);color:#fff;border-radius:12px;padding:10px 14px;font-size:.85rem;display:flex;justify-content:space-between;}
+
+/* ---------- TOAST ---------- */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e1b2e;color:#fff;
+  padding:12px 22px;border-radius:14px;font-size:.9rem;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.4);
+  opacity:0;pointer-events:none;transition:.25s;z-index:999;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ---------- TOPOLOGY ENGINE (estilo Packet Tracer) ---------- */
+.cable-toolbar{display:flex;gap:10px;flex-wrap:wrap;background:#1e293b;border-radius:14px;padding:12px;margin-bottom:10px;box-shadow:0 4px 12px rgba(0,0,0,.18);}
+.cable-tool{
+  display:flex;align-items:center;gap:8px;border:2px solid transparent;background:rgba(255,255,255,.1);color:#fff;
+  border-radius:12px;padding:10px 14px;font-size:.85rem;font-weight:700;cursor:pointer;transition:.15s;font-family:inherit;
+}
+.cable-tool .tool-plug{width:30px;height:26px;pointer-events:none;flex-shrink:0;background:#0b1220;}
+.cable-tool:hover{background:rgba(255,255,255,.2);}
+.cable-tool.active{border-color:#fff;background:rgba(255,255,255,.28);box-shadow:0 0 0 3px rgba(255,255,255,.15);}
+.cable-tool.disabled{opacity:.35;cursor:not-allowed;}
+
+/* leyenda permanente: qué pinta tiene cada conexión (fondo solido para que el texto claro se lea bien) */
+.cable-legend{background:#1e293b;border-radius:14px;padding:12px 14px;margin-bottom:14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 12px rgba(0,0,0,.18);}
+.legend-title{color:#fff;font-weight:700;font-size:.82rem;}
+.legend-row{display:flex;align-items:center;gap:12px;padding:6px;border-radius:10px;transition:.15s;}
+.legend-row.active{background:rgba(255,255,255,.16);}
+.legend-row .tool-plug{width:38px;height:32px;pointer-events:none;flex-shrink:0;background:#0b1220;}
+.legend-text{color:#f1f5f9;font-size:.76rem;line-height:1.4;}
+.legend-text b{color:#fff;}
+
+.port-list{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:6px;}
+.port-dot{
+  width:30px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;padding:2px;
+  background:#0b1220;border:2px solid #475569;cursor:pointer;transition:.15s;color:#cbd5e1;position:relative;
+}
+.port-dot svg{width:100%;height:100%;display:block;}
+.port-dot:hover{border-color:#fff;transform:scale(1.08);}
+.port-dot.used{border-color:var(--good)!important;box-shadow:0 0 0 2px rgba(34,197,94,.5);}
+.port-dot.pending{border-color:var(--accent-3)!important;box-shadow:0 0 0 3px rgba(245,158,11,.35);}
+.port-dot.inactive{opacity:.3;}
+.port-dot.flash-bad{animation:flashBad .5s;}
+@keyframes flashBad{0%,100%{border-color:#475569;}50%{border-color:var(--bad);background:#7f1d1d;}}
+.port-tooltip{position:absolute;bottom:115%;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;
+  font-size:.62rem;padding:2px 6px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:.15s;z-index:5;}
+.port-dot:hover .port-tooltip{opacity:1;}
+
+/* dispositivo de misión (fijo, con puertos) */
+.topo-board{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;align-items:flex-end;margin:14px 0;position:relative;min-height:170px;}
+.topo-device{display:flex;flex-direction:column;align-items:center;gap:6px;width:132px;}
+.topo-device .d-icon-big{font-size:2.4rem;}
+.topo-device .d-name{font-size:.78rem;font-weight:700;color:var(--ink);text-align:center;}
+
+/* panel trasero realista (estilo Packet Tracer) */
+.device-back-panel{
+  position:relative;width:100%;background:linear-gradient(160deg,#334155,#0f172a);
+  border-radius:10px;padding:16px 10px 12px;color:#e2e8f0;text-align:center;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.06), 0 6px 14px rgba(0,0,0,.35);
+}
+.device-back-panel::before{
+  content:"";position:absolute;left:12px;right:12px;top:5px;height:4px;border-radius:2px;
+  background:repeating-linear-gradient(90deg, rgba(255,255,255,.18) 0 3px, transparent 3px 7px);
+}
+.device-back-panel .d-icon-big{font-size:2.1rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));}
+.device-back-panel .d-name{font-size:.74rem;font-weight:700;margin-top:2px;color:#e2e8f0;}
+.device-back-panel .port-list{margin-top:10px;padding-top:8px;border-top:1px dashed rgba(255,255,255,.15);}
+.device-back-panel .zoom-btn{
+  position:absolute;top:6px;right:6px;background:rgba(255,255,255,.15);border:none;border-radius:8px;
+  width:24px;height:24px;font-size:.75rem;color:#fff;cursor:pointer;
+}
+.device-back-panel .zoom-btn:hover{background:rgba(255,255,255,.3);}
+.device-back-panel.big{padding:18px 18px 22px;}
+.device-back-panel.big .d-name{font-size:1rem;margin-top:2px;}
+.back-badge{
+  width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;
+  justify-content:center;font-size:1.3rem;margin:0 auto 6px;filter:grayscale(.4) opacity(.85);
+}
+.back-label{font-size:.68rem;color:#94a3b8;font-weight:700;letter-spacing:.3px;margin-top:2px;}
+
+/* puertos con etiqueta visible (vista ampliada / Cisco-style) */
+.port-list.with-labels{gap:16px;margin-top:14px;}
+.port-item{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.port-item .port-tooltip{display:none;}
+.port-caption{font-size:.64rem;color:#cbd5e1;text-align:center;max-width:78px;font-weight:600;}
+
+/* pantalla de selección de tipo de conexión (dispositivos multiconexión) */
+.conn-screen{display:flex;gap:4px;justify-content:center;margin-top:6px;flex-wrap:wrap;}
+.conn-toggle{
+  background:#1e293b;color:#cbd5e1;border:1px solid #334155;border-radius:8px;
+  font-size:.6rem;font-weight:700;padding:4px 6px;cursor:pointer;font-family:inherit;
+}
+.conn-toggle:hover{border-color:#94a3b8;}
+.conn-toggle.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* modal "vista trasera" ampliada */
+.device-modal-overlay{
+  position:fixed;inset:0;background:rgba(15,16,41,.78);display:flex;align-items:center;justify-content:center;
+  z-index:1200;padding:20px;
+}
+.device-modal{
+  background:#0f172a;border-radius:18px;padding:20px;max-width:360px;width:100%;position:relative;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+}
+.device-modal .modal-close{
+  position:absolute;top:10px;right:10px;background:rgba(255,255,255,.12);border:none;border-radius:8px;
+  width:28px;height:28px;color:#fff;font-size:.9rem;cursor:pointer;
+}
+.device-modal .modal-close:hover{background:rgba(255,255,255,.25);}
+.device-modal .conn-screen{margin-top:10px;}
+
+/* puertos "reales": el dibujo del conector (RJ45/USB/HDMI con su forma exacta, logos oficiales de WiFi/Bluetooth)
+   ahora lo aporta el SVG; aquí solo se da tamaño y un marco tipo carcasa, igual que el recorte real del panel. */
+.port-list.with-labels .port-dot{
+  width:56px;height:48px;border:2px solid #475569;border-radius:8px;background:#0b1220;cursor:pointer;padding:4px;
+}
+.port-list.with-labels .port-dot[data-type="wifi"],
+.port-list.with-labels .port-dot[data-type="bluetooth"]{
+  border-radius:50%;width:48px;height:48px;background:#0f172a;
+}
+.port-list.with-labels .port-dot.used{box-shadow:0 0 0 3px var(--good);}
+.port-list.with-labels .port-dot.pending{box-shadow:0 0 0 3px var(--accent-3);}
+
+/* en la vista mini, WiFi/Bluetooth tambien redondos para diferenciarlos de los puertos con cable */
+.port-dot[data-type="wifi"],
+.port-dot[data-type="bluetooth"]{border-radius:50%;width:28px;height:28px;}
+.topo-objective{background:#eef2ff;color:#312e81;border-radius:12px;padding:10px 14px;font-size:.82rem;margin-bottom:8px;display:flex;gap:8px;align-items:center;}
+.topo-objective.done{background:#ecfdf5;color:#047857;}
+.topo-objective .ob-status{font-size:1rem;}
+.topo-objectives{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+.topo-svg{position:absolute;inset:0;pointer-events:none;width:100%;height:100%;overflow:visible;}
+.topo-board-wrap{position:relative;}
+
+/* sandbox: puertos sobre cada dispositivo libre */
+.sb-device .port-list{margin-top:2px;}
+.sb-device .port-dot{width:20px;height:20px;font-size:.65rem;}
+
+@media (max-width:480px){
+  .course-grid{grid-template-columns:repeat(4,1fr);}
+  .avatar-grid{grid-template-columns:repeat(5,1fr);}
+}
