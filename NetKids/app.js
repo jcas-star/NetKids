@@ -23,6 +23,79 @@ const DEVICE_LIB = {
 };
 
 /* ============================================================
+   ICONOS VECTORIALES DE EQUIPOS (estilo Cisco Packet Tracer)
+   Glifos planos reconocibles con el lenguaje visual de Cisco:
+   routers azules con flechas de tráfico, switches grises, torres
+   de servidor, monitores, etc. Se usan en el simulador (sandbox).
+   ============================================================ */
+const DEVICE_SVG = {
+  router: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="32" cy="50" rx="25" ry="7" fill="#0f1d38"/>
+    <rect x="7" y="22" width="50" height="26" rx="4" fill="#27406f" stroke="#16223f" stroke-width="2"/>
+    <ellipse cx="32" cy="22" rx="25" ry="7" fill="#365a9c" stroke="#16223f" stroke-width="2"/>
+    <g stroke="#dbe9ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <line x1="18" y1="32" x2="46" y2="32"/><polyline points="41,27 46,32 41,37"/><polyline points="23,27 18,32 23,37"/>
+      <line x1="32" y1="40" x2="46" y2="40"/><polyline points="42,37 46,40 42,43"/>
+      <line x1="32" y1="40" x2="18" y2="40"/><polyline points="22,37 18,40 22,43"/>
+    </g>
+  </svg>`,
+  switchd: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="6" y="20" width="52" height="26" rx="5" fill="#5b6b85" stroke="#33405a" stroke-width="2"/>
+    <rect x="6" y="40" width="52" height="6" rx="3" fill="#46556f"/>
+    <g stroke="#eef3fb" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <line x1="16" y1="28" x2="46" y2="28"/><polyline points="41,24.5 46,28 41,31.5"/>
+      <line x1="48" y1="35" x2="18" y2="35"/><polyline points="23,31.5 18,35 23,38.5"/>
+    </g>
+  </svg>`,
+  server: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="18" y="6" width="28" height="52" rx="4" fill="#3a4a66" stroke="#1f2a40" stroke-width="2"/>
+    <g fill="#9fb3d4"><rect x="23" y="13" width="18" height="3.4" rx="1.7"/><rect x="23" y="20" width="18" height="3.4" rx="1.7"/></g>
+    <circle cx="32" cy="36" r="6.5" fill="#1f2a40"/><circle cx="32" cy="36" r="2.6" fill="#9fb3d4"/>
+    <circle cx="26" cy="50" r="2.2" fill="#22c55e"/><circle cx="32" cy="50" r="2.2" fill="#f59e0b"/>
+  </svg>`,
+  pc: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="12" width="48" height="32" rx="3" fill="#2a3346" stroke="#161c28" stroke-width="2"/>
+    <rect x="12" y="16" width="40" height="24" rx="2" fill="#7fd1ff"/>
+    <rect x="26" y="44" width="12" height="6" fill="#2a3346"/>
+    <rect x="18" y="50" width="28" height="4" rx="2" fill="#2a3346"/>
+  </svg>`,
+  tablet: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="16" y="8" width="32" height="48" rx="5" fill="#2a3346" stroke="#161c28" stroke-width="2"/>
+    <rect x="20" y="13" width="24" height="36" rx="2" fill="#7fd1ff"/>
+    <circle cx="32" cy="52.5" r="1.8" fill="#7f8da3"/>
+  </svg>`,
+  phone: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="6" width="24" height="52" rx="5" fill="#2a3346" stroke="#161c28" stroke-width="2"/>
+    <rect x="23.5" y="12" width="17" height="38" rx="1.5" fill="#7fd1ff"/>
+    <circle cx="32" cy="54" r="1.6" fill="#7f8da3"/>
+  </svg>`,
+  printer: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="14" y="10" width="36" height="14" rx="2" fill="#cdd6e4"/>
+    <rect x="10" y="24" width="44" height="20" rx="3" fill="#5b6b85" stroke="#33405a" stroke-width="2"/>
+    <rect x="18" y="40" width="28" height="14" fill="#fff" stroke="#5b6b85" stroke-width="2"/>
+    <circle cx="46" cy="32" r="2.4" fill="#22c55e"/>
+  </svg>`,
+  tv: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="6" y="12" width="52" height="34" rx="3" fill="#2a3346" stroke="#161c28" stroke-width="2"/>
+    <rect x="10" y="16" width="44" height="26" rx="2" fill="#7fd1ff"/>
+    <rect x="28" y="46" width="8" height="6" fill="#2a3346"/>
+    <rect x="24" y="52" width="16" height="4" rx="2" fill="#2a3346"/>
+  </svg>`,
+  speaker: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="18" y="6" width="28" height="52" rx="5" fill="#3a4a66" stroke="#1f2a40" stroke-width="2"/>
+    <circle cx="32" cy="22" r="7" fill="#1f2a40"/><circle cx="32" cy="22" r="3" fill="#9fb3d4"/>
+    <circle cx="32" cy="42" r="10" fill="#1f2a40"/><circle cx="32" cy="42" r="4.5" fill="#9fb3d4"/>
+  </svg>`,
+  camera: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="20" width="34" height="20" rx="6" fill="#5b6b85" stroke="#33405a" stroke-width="2"/>
+    <circle cx="22" cy="30" r="7" fill="#1f2a40"/><circle cx="22" cy="30" r="3" fill="#7fd1ff"/>
+    <rect x="44" y="26" width="9" height="8" rx="1" fill="#5b6b85"/>
+    <rect x="30" y="40" width="4" height="9" fill="#33405a"/>
+    <rect x="22" y="49" width="20" height="4" rx="2" fill="#33405a"/>
+  </svg>`,
+};
+
+/* ============================================================
    MOTOR DE TOPOLOGÍA: puertos reales + cables (estilo Packet Tracer)
    ============================================================ */
 const DEVICE_PORTS = {
@@ -1448,50 +1521,98 @@ function renderPhishingEngine(stage, cfg) {
    SANDBOX LIBRE
    ============================================================ */
 const SANDBOX_DEVICES = ["pc", "tablet", "phone", "printer", "router", "switchd", "tv", "speaker", "camera", "server"];
+const SANDBOX_CATEGORIES = [
+  { key: "network", label: "Dispositivos de red", icon: "🌐", devices: ["router", "switchd", "server"] },
+  { key: "end",     label: "Dispositivos finales", icon: "💻", devices: ["pc", "tablet", "phone", "printer", "tv", "speaker", "camera"] },
+  { key: "conn",    label: "Conexiones", icon: "🔌", devices: null },
+];
 let sbCounter = 0;
 let sbLinks = []; // {a:{devId,portId}, b:{devId,portId}, tool}
 let sbActiveTool = null;
 let sbPending = null; // {devId, portId, type, el}
+let sbMode = "select"; // "select" | "delete"
+
+function sbGlyph(key) {
+  return DEVICE_SVG[key] || `<span class="emoji">${(DEVICE_LIB[key] || {}).icon || "❓"}</span>`;
+}
 
 function renderSandbox() {
+  sbMode = "select";
+  sbActiveTool = null;
+  sbPending = null;
+
+  // Barra de categorías (selector inferior estilo Packet Tracer)
+  const cats = document.getElementById("pt-cats");
+  cats.innerHTML = "";
+  SANDBOX_CATEGORIES.forEach((cat, i) => {
+    const b = document.createElement("button");
+    b.className = "pt-cat" + (i === 0 ? " active" : "");
+    b.dataset.cat = cat.key;
+    b.innerHTML = `<span>${cat.icon}</span> ${cat.label}`;
+    b.onclick = () => {
+      cats.querySelectorAll(".pt-cat").forEach(x => x.classList.toggle("active", x === b));
+      renderModels(cat.key);
+    };
+    cats.appendChild(b);
+  });
+  renderModels(SANDBOX_CATEGORIES[0].key);
+
+  // Lienzo: aceptar arrastre de dispositivos (enlazar una sola vez)
+  const canvas = document.getElementById("sandbox-canvas");
+  if (!canvas.dataset.bound) {
+    canvas.dataset.bound = "1";
+    canvas.addEventListener("dragover", e => e.preventDefault());
+    canvas.addEventListener("drop", e => {
+      e.preventDefault();
+      const data = e.dataTransfer.getData("text/plain");
+      if (data && data.startsWith("tray:")) {
+        const key = data.split(":")[1];
+        const rect = canvas.getBoundingClientRect();
+        addSbDevice(key, e.clientX - rect.left - 36, e.clientY - rect.top - 36);
+      }
+    });
+  }
+
+  // Herramientas laterales: seleccionar / borrar
+  const toolsEl = document.getElementById("pt-tools");
+  toolsEl.querySelectorAll(".pt-tool").forEach(b => {
+    b.classList.toggle("active", b.dataset.mode === "select");
+    b.onclick = () => {
+      sbMode = b.dataset.mode;
+      toolsEl.querySelectorAll(".pt-tool").forEach(x => x.classList.toggle("active", x === b));
+      document.getElementById("sandbox-canvas").classList.toggle("delete-mode", sbMode === "delete");
+      const wrap = document.querySelector(".pt-canvas-wrap");
+      if (wrap) wrap.classList.toggle("del", sbMode === "delete");
+      if (sbPending) { sbPending.el.classList.remove("pending"); sbPending = null; }
+      drawSbLinks();
+    };
+  });
+
+  renderSavedDesigns();
+}
+
+function renderModels(catKey) {
   const tray = document.getElementById("device-tray");
   tray.innerHTML = "";
-  SANDBOX_DEVICES.forEach(key => {
+  const cat = SANDBOX_CATEGORIES.find(c => c.key === catKey);
+  if (catKey === "conn") {
+    tray.classList.add("conn-mode");
+    renderCableToolbar(tray, key => {
+      sbActiveTool = key;
+      if (sbPending) { sbPending.el.classList.remove("pending"); sbPending = null; }
+    }, null);
+    return;
+  }
+  tray.classList.remove("conn-mode");
+  cat.devices.forEach(key => {
     const dev = DEVICE_LIB[key];
     const el = document.createElement("div");
     el.className = "tray-device";
     el.draggable = true;
-    el.innerHTML = `<span class="d-icon">${dev.icon}</span>${dev.label}`;
+    el.innerHTML = `<span class="tray-glyph">${sbGlyph(key)}</span><span class="tray-label">${dev.label}</span>`;
     el.addEventListener("dragstart", e => e.dataTransfer.setData("text/plain", "tray:" + key));
     tray.appendChild(el);
   });
-
-  const canvas = document.getElementById("sandbox-canvas");
-  canvas.addEventListener("dragover", e => e.preventDefault());
-  canvas.addEventListener("drop", e => {
-    e.preventDefault();
-    const data = e.dataTransfer.getData("text/plain");
-    if (data && data.startsWith("tray:")) {
-      const key = data.split(":")[1];
-      const rect = canvas.getBoundingClientRect();
-      addSbDevice(key, e.clientX - rect.left - 32, e.clientY - rect.top - 32);
-    }
-  });
-
-  const toolbar = document.getElementById("sandbox-toolbar");
-  let sbLegend = document.getElementById("sandbox-legend");
-  if (!sbLegend) {
-    sbLegend = document.createElement("div");
-    sbLegend.id = "sandbox-legend";
-    sbLegend.className = "cable-legend";
-    toolbar.insertAdjacentElement("afterend", sbLegend);
-  }
-  renderCableToolbar(toolbar, key => {
-    sbActiveTool = key;
-    if (sbPending) { sbPending.el.classList.remove("pending"); sbPending = null; }
-  }, sbLegend);
-
-  renderSavedDesigns();
 }
 
 function addSbDevice(key, x, y) {
@@ -1507,7 +1628,7 @@ function addSbDevice(key, x, y) {
 
   const body = document.createElement("div");
   body.className = "sb-body";
-  body.innerHTML = `<span class="d-icon">${dev.icon}</span>${dev.label}`;
+  body.innerHTML = `<span class="sb-glyph">${sbGlyph(key)}</span><span class="sb-name">${dev.label}</span>`;
   el.appendChild(body);
 
   const portList = document.createElement("div");
@@ -1517,6 +1638,7 @@ function addSbDevice(key, x, y) {
 
   let dragging = false, ox = 0, oy = 0;
   body.addEventListener("pointerdown", e => {
+    if (sbMode === "delete") { deleteSbDevice(id); return; }
     dragging = true; ox = e.clientX; oy = e.clientY;
     body.setPointerCapture(e.pointerId);
   });
@@ -1524,8 +1646,8 @@ function addSbDevice(key, x, y) {
     if (!dragging) return;
     const dx = e.clientX - ox, dy = e.clientY - oy;
     ox = e.clientX; oy = e.clientY;
-    el.style.left = (el.offsetLeft + dx) + "px";
-    el.style.top = (el.offsetTop + dy) + "px";
+    el.style.left = Math.max(0, el.offsetLeft + dx) + "px";
+    el.style.top = Math.max(0, el.offsetTop + dy) + "px";
     drawSbLinks();
   });
   body.addEventListener("pointerup", () => { dragging = false; });
@@ -1533,8 +1655,23 @@ function addSbDevice(key, x, y) {
   canvas.appendChild(el);
 }
 
+function deleteSbDevice(id) {
+  sbLinks = sbLinks.filter(l => l.a.devId !== id && l.b.devId !== id);
+  const el = document.getElementById(id);
+  if (el) el.remove();
+  if (sbPending && sbPending.devId === id) sbPending = null;
+  drawSbLinks();
+  toast("Aparato eliminado 🗑️");
+}
+
 function handleSbPortClick(devId, portId, type, dotEl) {
-  if (!sbActiveTool) { toast("Elige primero un cable o conexión inalámbrica arriba ☝️"); return; }
+  if (sbMode === "delete") {
+    sbLinks = sbLinks.filter(l => !((l.a.devId === devId && l.a.portId === portId) || (l.b.devId === devId && l.b.portId === portId)));
+    dotEl.classList.remove("used");
+    drawSbLinks();
+    return;
+  }
+  if (!sbActiveTool) { toast("Elige primero una conexión en la pestaña 🔌 Conexiones"); return; }
   if (!sbPending) {
     sbPending = { devId, portId, type, el: dotEl };
     dotEl.classList.add("pending");
@@ -1568,6 +1705,7 @@ function drawSbLinks() {
   svg.innerHTML = "";
   const canvas = document.getElementById("sandbox-canvas");
   const canvasRect = canvas.getBoundingClientRect();
+  const NS = "http://www.w3.org/2000/svg";
   sbLinks.forEach(link => {
     const elA = document.querySelector(`#${link.a.devId} .port-dot[data-port="${link.a.portId}"]`);
     const elB = document.querySelector(`#${link.b.devId} .port-dot[data-port="${link.b.portId}"]`);
@@ -1575,18 +1713,54 @@ function drawSbLinks() {
     const ra = elA.getBoundingClientRect(), rb = elB.getBoundingClientRect();
     const x1 = ra.left + ra.width / 2 - canvasRect.left, y1 = ra.top + ra.height / 2 - canvasRect.top;
     const x2 = rb.left + rb.width / 2 - canvasRect.left, y2 = rb.top + rb.height / 2 - canvasRect.top;
-    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    const wireless = isWirelessTool(link.tool);
+
+    // línea ancha (transparente) para poder tocar y borrar el cable en modo borrar
+    const hit = document.createElementNS(NS, "line");
+    hit.setAttribute("x1", x1); hit.setAttribute("y1", y1);
+    hit.setAttribute("x2", x2); hit.setAttribute("y2", y2);
+    hit.setAttribute("stroke", "#000");
+    hit.setAttribute("stroke-opacity", "0");
+    hit.setAttribute("stroke-width", "16");
+    hit.style.pointerEvents = (sbMode === "delete") ? "stroke" : "none";
+    hit.style.cursor = "pointer";
+    hit.addEventListener("click", () => {
+      if (sbMode !== "delete") return;
+      sbLinks = sbLinks.filter(l => l !== link);
+      elA.classList.remove("used"); elB.classList.remove("used");
+      drawSbLinks();
+      toast("Cable eliminado 🗑️");
+    });
+    svg.appendChild(hit);
+
+    const line = document.createElementNS(NS, "line");
     line.setAttribute("x1", x1); line.setAttribute("y1", y1);
     line.setAttribute("x2", x2); line.setAttribute("y2", y2);
     line.setAttribute("stroke", colorForTool(link.tool));
     line.setAttribute("stroke-width", "3");
-    if (isWirelessTool(link.tool)) line.setAttribute("stroke-dasharray", "6,5");
+    line.setAttribute("stroke-linecap", "round");
+    if (wireless) line.setAttribute("stroke-dasharray", "6,5");
+    line.style.pointerEvents = "none";
     svg.appendChild(line);
+
+    // luces de estado verdes en cada extremo (enlace "activo", como en Packet Tracer)
+    [[x1, y1], [x2, y2]].forEach(([x, y]) => {
+      const dot = document.createElementNS(NS, "rect");
+      dot.setAttribute("x", x - 4.5); dot.setAttribute("y", y - 4.5);
+      dot.setAttribute("width", "9"); dot.setAttribute("height", "9");
+      dot.setAttribute("rx", "1.5");
+      dot.setAttribute("fill", "#22c55e");
+      dot.setAttribute("stroke", "#ffffff");
+      dot.setAttribute("stroke-width", "1.5");
+      dot.style.pointerEvents = "none";
+      svg.appendChild(dot);
+    });
   });
 }
 
 function clearSandbox() {
-  document.getElementById("sandbox-canvas").innerHTML = "";
+  const canvas = document.getElementById("sandbox-canvas");
+  canvas.innerHTML = "";
   document.getElementById("sandbox-lines").innerHTML = "";
   sbLinks = [];
   sbPending = null;
@@ -1607,13 +1781,19 @@ function saveSandboxDesign() {
 function renderSavedDesigns() {
   const list = document.getElementById("sandbox-saved-list");
   list.innerHTML = "";
-  (state.sandboxDesigns || []).slice().reverse().forEach(d => {
+  const designs = state.sandboxDesigns || [];
+  if (designs.length === 0) {
+    list.innerHTML = `<div class="saved-empty">Aún no has guardado ninguna red.</div>`;
+    return;
+  }
+  designs.slice().reverse().forEach(d => {
     const item = document.createElement("div");
     item.className = "saved-item";
     item.innerHTML = `<span>📁 ${d.name}</span><span>${d.deviceCount} disp. · ${d.linkCount} conex. · ${d.date}</span>`;
     list.appendChild(item);
   });
 }
+
 
 /* ============================================================
    INIT / EVENTOS

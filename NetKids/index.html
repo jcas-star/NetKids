@@ -83,28 +83,44 @@
     <div id="mission-stage" class="mission-stage"></div>
   </section>
 
-  <!-- PANTALLA 4: SANDBOX -->
-  <section id="screen-sandbox" class="screen">
-    <header class="topbar">
+  <!-- PANTALLA 4: SANDBOX (Simulador de redes estilo Cisco Packet Tracer) -->
+  <section id="screen-sandbox" class="screen pt-screen">
+    <div class="pt-menubar">
       <button class="icon-btn" id="btn-sandbox-back" title="Volver">⬅️</button>
-      <h2>Sandbox libre 🧪</h2>
-      <button class="icon-btn" id="btn-sandbox-save" title="Guardar diseño">💾</button>
-    </header>
-    <p class="module-desc">Arrastra dispositivos al lienzo, elige el cable correcto y conecta sus puertos como en un técnico de redes real. No hay reto fijo: explora libremente.</p>
-    <div id="sandbox-toolbar" class="cable-toolbar"></div>
-    <div class="sandbox-wrap">
-      <div class="device-tray" id="device-tray"></div>
-      <div class="sandbox-canvas-wrap">
-        <svg id="sandbox-lines" class="sandbox-lines"></svg>
-        <div id="sandbox-canvas" class="sandbox-canvas"></div>
+      <span class="pt-title">🛰️ NetKids · Simulador de Redes</span>
+      <span class="pt-tabs"><span class="pt-tab active">Lógico</span></span>
+      <span class="pt-spacer"></span>
+      <input type="text" id="sandbox-design-name" placeholder="Nombre de tu red (ej: Mi casa)">
+      <button class="pt-btn pt-btn-primary" id="btn-sandbox-savebtn">💾 Guardar red</button>
+      <button class="pt-btn" id="btn-sandbox-clear">🗑️ Vaciar</button>
+      <button class="icon-btn" id="btn-sandbox-save" hidden aria-hidden="true"></button>
+    </div>
+
+    <div class="pt-body">
+      <div class="pt-workspace">
+        <div class="sandbox-canvas-wrap pt-canvas-wrap">
+          <div id="sandbox-canvas" class="sandbox-canvas"></div>
+          <svg id="sandbox-lines" class="sandbox-lines"></svg>
+          <div class="pt-hint">Arrastra dispositivos desde abajo ⬇️ · pestaña 🔌 para elegir cable · une dos puertos</div>
+        </div>
+        <div class="pt-tools" id="pt-tools">
+          <button class="pt-tool active" data-mode="select" title="Seleccionar y mover">🖐️</button>
+          <button class="pt-tool" data-mode="delete" title="Borrar (toca un aparato o un cable)">❌</button>
+        </div>
+      </div>
+      <div class="pt-saved-panel">
+        <div class="pt-saved-title">📁 Mis redes guardadas</div>
+        <div id="sandbox-saved-list" class="saved-list"></div>
       </div>
     </div>
-    <div class="sandbox-actions">
-      <input type="text" id="sandbox-design-name" placeholder="Nombre de tu red (ej: Mi casa)">
-      <button class="btn btn-secondary" id="btn-sandbox-clear">Vaciar lienzo</button>
-      <button class="btn btn-primary" id="btn-sandbox-savebtn">Guardar red</button>
+
+    <div class="pt-devicebar">
+      <div class="pt-cats" id="pt-cats"></div>
+      <div class="pt-models"><div class="device-tray" id="device-tray"></div></div>
     </div>
-    <div id="sandbox-saved-list" class="saved-list"></div>
+
+    <div id="sandbox-toolbar" hidden></div>
+    <div id="sandbox-legend" hidden></div>
   </section>
 
   <!-- TOAST / FEEDBACK -->

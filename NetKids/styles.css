@@ -318,3 +318,86 @@ body{
   .course-grid{grid-template-columns:repeat(4,1fr);}
   .avatar-grid{grid-template-columns:repeat(5,1fr);}
 }
+
+/* ============================================================
+   SIMULADOR DE RED — estética Cisco Packet Tracer (solo sandbox)
+   ============================================================ */
+.pt-screen{padding:10px;gap:8px;background:#cdd6e4;}
+.pt-screen.active{display:flex;flex-direction:column;}
+
+/* barra de menú superior */
+.pt-menubar{display:flex;align-items:center;gap:8px;background:linear-gradient(#26456f,#1f3050);
+  border-radius:10px 10px 0 0;padding:8px 10px;color:#fff;flex-wrap:wrap;}
+.pt-menubar .icon-btn{width:38px;height:38px;background:rgba(255,255,255,.14);}
+.pt-title{font-weight:700;font-size:.92rem;white-space:nowrap;}
+.pt-tabs{display:flex;align-items:flex-end;}
+.pt-tab{background:#2d4670;color:#cfe0ff;border-radius:6px 6px 0 0;padding:5px 14px;font-size:.76rem;font-weight:700;}
+.pt-tab.active{background:#f4f7fb;color:#1f3050;}
+.pt-spacer{flex:1;}
+.pt-menubar input{border:none;border-radius:8px;padding:8px 10px;font-family:inherit;font-size:.82rem;min-width:140px;color:#1e293b;}
+.pt-btn{background:#2d4670;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit;transition:.15s;}
+.pt-btn:hover{background:#365a9c;}
+.pt-btn-primary{background:#2563eb;}
+.pt-btn-primary:hover{background:#1d4ed8;}
+
+/* cuerpo: lienzo + panel de guardadas */
+.pt-body{display:flex;gap:10px;flex:1;min-height:0;flex-wrap:wrap;}
+.pt-workspace{position:relative;flex:1;display:flex;min-width:260px;min-height:380px;}
+.pt-canvas-wrap{flex:1;background:#f4f7fb;
+  background-image:linear-gradient(#dde6f2 1px,transparent 1px),linear-gradient(90deg,#dde6f2 1px,transparent 1px);
+  background-size:26px 26px;border:1px solid #aebccf;border-radius:6px;overflow:hidden;position:relative;min-height:380px;}
+.pt-canvas-wrap.del{cursor:crosshair;}
+.pt-canvas-wrap .sandbox-lines{pointer-events:auto;}
+.pt-hint{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);background:rgba(31,48,80,.85);color:#fff;
+  font-size:.72rem;padding:5px 12px;border-radius:20px;pointer-events:none;white-space:nowrap;max-width:94%;overflow:hidden;text-overflow:ellipsis;}
+
+/* herramientas laterales (seleccionar / borrar) */
+.pt-tools{position:absolute;top:8px;right:8px;display:flex;flex-direction:column;gap:6px;background:#1f3050;
+  border-radius:10px;padding:6px;z-index:6;box-shadow:0 4px 12px rgba(0,0,0,.3);}
+.pt-tool{width:40px;height:40px;border:none;border-radius:8px;background:#2d4670;color:#fff;font-size:1.15rem;cursor:pointer;transition:.15s;}
+.pt-tool:hover{background:#365a9c;}
+.pt-tool.active{background:#2563eb;box-shadow:0 0 0 2px rgba(255,255,255,.35);}
+
+/* panel de redes guardadas */
+.pt-saved-panel{width:200px;background:#1f3050;border-radius:8px;padding:12px;color:#fff;display:flex;flex-direction:column;gap:8px;}
+.pt-saved-title{font-weight:700;font-size:.82rem;}
+.pt-saved-panel .saved-list{margin-top:0;}
+.pt-saved-panel .saved-item{background:rgba(255,255,255,.1);border-radius:10px;padding:8px 10px;font-size:.74rem;flex-direction:column;gap:2px;align-items:flex-start;}
+.saved-empty{color:#a9bbd8;font-size:.74rem;}
+
+/* barra inferior de dispositivos */
+.pt-devicebar{background:#e8edf5;border:1px solid #c4cedd;border-radius:0 0 10px 10px;}
+.pt-cats{display:flex;gap:6px;padding:7px 8px;border-bottom:1px solid #d4dcea;flex-wrap:wrap;}
+.pt-cat{display:flex;align-items:center;gap:6px;border:1px solid transparent;background:transparent;border-radius:8px;
+  padding:7px 13px;font-weight:700;font-size:.8rem;color:#475569;cursor:pointer;font-family:inherit;transition:.15s;}
+.pt-cat:hover{background:#dbe3ef;}
+.pt-cat.active{background:#fff;border-color:#9db5d8;color:#1d4ed8;box-shadow:0 1px 3px rgba(0,0,0,.12);}
+.pt-models{padding:8px;min-height:78px;}
+.pt-models .device-tray{background:transparent;padding:0;flex-direction:row;gap:8px;max-width:100%;}
+
+/* modelos de dispositivo en la bandeja inferior */
+.pt-models .tray-device{background:#fff;color:#1e293b;border:1px solid #c4cedd;border-radius:10px;width:78px;
+  padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:3px;font-weight:600;font-size:.66rem;text-align:center;transition:.15s;cursor:grab;}
+.pt-models .tray-device:hover{border-color:#2563eb;box-shadow:0 3px 8px rgba(37,99,235,.2);transform:translateY(-2px);}
+.tray-glyph svg{width:38px;height:38px;display:block;}
+.tray-label{line-height:1.1;}
+
+/* cables dentro de la pestaña Conexiones */
+.pt-models .cable-tool{background:#fff;color:#1e293b;border:1px solid #c4cedd;}
+.pt-models .cable-tool:hover{background:#eef3fb;}
+.pt-models .cable-tool.active{background:#dbeafe;border-color:#2563eb;color:#1d4ed8;box-shadow:0 0 0 2px rgba(37,99,235,.25);}
+.pt-models .cable-tool .tool-plug{background:#0b1220;}
+
+/* dispositivos colocados en el lienzo */
+.pt-canvas-wrap .sb-device{width:auto;color:#1e293b;}
+.sb-device .sb-body{display:flex;flex-direction:column;align-items:center;gap:1px;cursor:grab;}
+.sb-glyph svg{width:48px;height:48px;display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.25));}
+.sb-name{font-size:.66rem;font-weight:700;color:#1e293b;background:rgba(255,255,255,.7);border-radius:4px;padding:0 4px;white-space:nowrap;}
+.sandbox-canvas.delete-mode .sb-device .sb-body{cursor:pointer;}
+.sandbox-canvas.delete-mode .sb-device:hover .sb-glyph svg{filter:drop-shadow(0 0 5px #ef4444);}
+.pt-canvas-wrap .sb-device .port-dot{background:#0b1220;}
+
+@media (max-width:720px){
+  .pt-saved-panel{width:100%;}
+  .pt-title{font-size:.8rem;}
+}
