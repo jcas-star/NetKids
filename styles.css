@@ -347,7 +347,7 @@ body{
   background-image:linear-gradient(#dde6f2 1px,transparent 1px),linear-gradient(90deg,#dde6f2 1px,transparent 1px);
   background-size:26px 26px;border:1px solid #aebccf;border-radius:6px;overflow:hidden;position:relative;min-height:380px;}
 .pt-canvas-wrap.del{cursor:crosshair;}
-.pt-canvas-wrap .sandbox-lines{pointer-events:auto;}
+.pt-canvas-wrap .sandbox-lines{pointer-events:none;}
 .pt-hint{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);background:rgba(31,48,80,.85);color:#fff;
   font-size:.72rem;padding:5px 12px;border-radius:20px;pointer-events:none;white-space:nowrap;max-width:94%;overflow:hidden;text-overflow:ellipsis;}
 
@@ -401,3 +401,9 @@ body{
   .pt-saved-panel{width:100%;}
   .pt-title{font-size:.8rem;}
 }
+
+/* táctil: permitir mover con el dedo sin desplazar la página */
+.sb-device{touch-action:none;}
+.sb-device .sb-body{touch-action:none;}
+.pt-canvas-wrap .port-dot{touch-action:manipulation;}
+.tray-device{touch-action:manipulation;}

@@ -1531,6 +1531,7 @@ let sbLinks = []; // {a:{devId,portId}, b:{devId,portId}, tool}
 let sbActiveTool = null;
 let sbPending = null; // {devId, portId, type, el}
 let sbMode = "select"; // "select" | "delete"
+let sbAddIndex = 0;
 
 function sbGlyph(key) {
   return DEVICE_SVG[key] || `<span class="emoji">${(DEVICE_LIB[key] || {}).icon || "❓"}</span>`;
@@ -1655,6 +1656,7 @@ function renderSandbox() {
   sbMode = "select";
   sbActiveTool = null;
   sbPending = null;
+  sbAddIndex = 0;
 
   // Barra de categorías (selector inferior estilo Packet Tracer)
   const cats = document.getElementById("pt-cats");
@@ -1728,9 +1730,20 @@ function renderModels(catKey) {
     el.className = "tray-device";
     el.draggable = true;
     el.innerHTML = `<span class="tray-glyph">${sbGlyph(key)}</span><span class="tray-label">${dev.label}</span>`;
+    el.addEventListener("click", () => addSbDeviceCascade(key));
     el.addEventListener("dragstart", e => e.dataTransfer.setData("text/plain", "tray:" + key));
     tray.appendChild(el);
   });
+}
+
+function addSbDeviceCascade(key) {
+  const canvas = document.getElementById("sandbox-canvas");
+  const w = canvas.clientWidth || 320;
+  const cols = Math.max(3, Math.floor(w / 110));
+  const i = sbAddIndex++;
+  const x = 24 + (i % cols) * 96;
+  const y = 24 + (Math.floor(i / cols) % 4) * 104;
+  addSbDevice(key, x, y);
 }
 
 function addSbDevice(key, x, y) {
@@ -1821,6 +1834,7 @@ function handleSbPortClick(devId, portId, type, dotEl) {
 function drawSbLinks() {
   const svg = document.getElementById("sandbox-lines");
   svg.innerHTML = "";
+  svg.style.pointerEvents = (sbMode === "delete") ? "auto" : "none";
   const canvas = document.getElementById("sandbox-canvas");
   const canvasRect = canvas.getBoundingClientRect();
   const NS = "http://www.w3.org/2000/svg";
@@ -1882,6 +1896,7 @@ function clearSandbox() {
   document.getElementById("sandbox-lines").innerHTML = "";
   sbLinks = [];
   sbPending = null;
+  sbAddIndex = 0;
 }
 
 function saveSandboxDesign() {
