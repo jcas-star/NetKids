@@ -1652,6 +1652,13 @@ async function exportSandboxPNG() {
   }, "image/png");
 }
 
+function distToSeg(px, py, x1, y1, x2, y2) {
+  const dx = x2 - x1, dy = y2 - y1, l2 = dx * dx + dy * dy;
+  let t = l2 ? ((px - x1) * dx + (py - y1) * dy) / l2 : 0;
+  t = Math.max(0, Math.min(1, t));
+  return Math.hypot(px - (x1 + t * dx), py - (y1 + t * dy));
+}
+
 function renderSandbox() {
   sbMode = "select";
   sbActiveTool = null;
@@ -1686,6 +1693,34 @@ function renderSandbox() {
         const key = data.split(":")[1];
         const rect = canvas.getBoundingClientRect();
         addSbDevice(key, e.clientX - rect.left - 36, e.clientY - rect.top - 36);
+      }
+    });
+    // modo borrar: tocar cerca de un cable lo elimina
+    canvas.addEventListener("pointerdown", e => {
+      if (sbMode !== "delete") return;
+      if (e.target.closest(".sb-device")) return;
+      const cr = canvas.getBoundingClientRect();
+      const px = e.clientX - cr.left, py = e.clientY - cr.top;
+      let best = null, bestD = 16;
+      sbLinks.forEach(link => {
+        const a = document.querySelector(`#${link.a.devId} .port-dot[data-port="${link.a.portId}"]`);
+        const b = document.querySelector(`#${link.b.devId} .port-dot[data-port="${link.b.portId}"]`);
+        if (!a || !b) return;
+        const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+        const x1 = ra.left + ra.width / 2 - cr.left, y1 = ra.top + ra.height / 2 - cr.top;
+        const x2 = rb.left + rb.width / 2 - cr.left, y2 = rb.top + rb.height / 2 - cr.top;
+        const d = distToSeg(px, py, x1, y1, x2, y2);
+        if (d < bestD) { bestD = d; best = link; }
+      });
+      if (best) {
+        sbLinks = sbLinks.filter(l => l !== best);
+        [best.a, best.b].forEach(end => {
+          const dot = document.querySelector(`#${end.devId} .port-dot[data-port="${end.portId}"]`);
+          const used = sbLinks.some(l => (l.a.devId === end.devId && l.a.portId === end.portId) || (l.b.devId === end.devId && l.b.portId === end.portId));
+          if (dot && !used) dot.classList.remove("used");
+        });
+        drawSbLinks();
+        toast("Cable eliminado 🗑️");
       }
     });
   }
@@ -1834,7 +1869,7 @@ function handleSbPortClick(devId, portId, type, dotEl) {
 function drawSbLinks() {
   const svg = document.getElementById("sandbox-lines");
   svg.innerHTML = "";
-  svg.style.pointerEvents = (sbMode === "delete") ? "auto" : "none";
+  svg.style.pointerEvents = "none";
   const canvas = document.getElementById("sandbox-canvas");
   const canvasRect = canvas.getBoundingClientRect();
   const NS = "http://www.w3.org/2000/svg";

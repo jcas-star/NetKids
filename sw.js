@@ -1,5 +1,5 @@
 /* NetKids — Service Worker: cache offline-first para uso sin conexión en el aula */
-const CACHE_NAME = "netkids-cache-v5";
+const CACHE_NAME = "netkids-cache-v6";
 const ASSETS = [
   "./",
   "./index.html",
