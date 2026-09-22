@@ -122,7 +122,7 @@ const CABLE_DEFS = {
                swatchType: "hdmi",  desc: "Conector trapezoidal azul. Para enviar imagen y sonido a una pantalla o Smart TV." },
   wifi:      { label: "WiFi",                icon: "📶", color: "#22c55e", category: "wireless", matches: t => t === "wifi",
                swatchType: "wifi",  desc: "Sin cable: conexión inalámbrica a internet por ondas de radio." },
-  bluetooth: { label: "Bluetooth",           icon: "🦷", color: "#6366f1", category: "wireless", matches: t => t === "bluetooth",
+  bluetooth: { label: "Bluetooth",           icon: "", color: "#6366f1", category: "wireless", matches: t => t === "bluetooth",
                swatchType: "bluetooth", desc: "Sin cable: conexión inalámbrica de corto alcance entre aparatos cercanos." },
 };
 const SIMPLE_TOOLS = [
@@ -130,7 +130,7 @@ const SIMPLE_TOOLS = [
   { key: "wireless", label: "Inalámbrico",   icon: "📶", color: "#22c55e", swatchType: "wifi", desc: "Conexión sin cables: WiFi o Bluetooth." },
 ];
 
-const PORT_ICON = { rj45: "🔌", "usb-a": "🔲", "usb-c": "🔳", hdmi: "📺", wifi: "📶", bluetooth: "🦷" };
+const PORT_ICON = { rj45: "🔌", "usb-a": "🔲", "usb-c": "🔳", hdmi: "📺", wifi: "📶", bluetooth: "" };
 
 /* Iconos reales de conector, dibujados a escala para que se reconozcan en un dispositivo de verdad:
    RJ45 con sus 8 pines dorados y la pestaña del clip, USB-A/USB-C con su silueta exacta, HDMI trapezoidal,
@@ -190,7 +190,7 @@ function groupsForPorts(ports) {
 const GROUP_META = {
   cable:     { label: "Cable",     icon: "🔌" },
   wifi:      { label: "WiFi",      icon: "📶" },
-  bluetooth: { label: "Bluetooth", icon: "🦷" },
+  bluetooth: { label: "Bluetooth", icon: "" },
 };
 
 function isSimpleMode() {
@@ -348,8 +348,8 @@ const MODULES = [
     css: "mod-3",
   },
   {
-    id: 4, key: "mod-4", icon: "🔒", title: "Ciberseguridad básica",
-    desc: "Contraseñas seguras, phishing y privacidad: decisiones reales, sin penalización.",
+    id: 4, key: "mod-4", icon: "🔒", title: "Ciberseguridad e IA",
+    desc: "Contraseñas seguras, phishing, privacidad y uso responsable de la Inteligencia Artificial: decisiones reales, sin penalización.",
     css: "mod-4",
   },
 ];
@@ -752,6 +752,150 @@ const MISSIONS = [
     },
   },
 
+  // ---------- MÓDULO 4 · Inteligencia Artificial ----------
+  {
+    id: "m4-5", module: 4, icon: "🤔", title: "¿Te fías de la IA?",
+    short: "Descubre cuándo una IA puede equivocarse",
+    engine: "quiz",
+    build(course) {
+      const sets = {
+        3: {
+          text: "Le preguntas a un asistente de IA cuánto es 5 + 3 y te responde que es 9. ¿Qué haces?",
+          options: [
+            { t: "Comprobarlo yo mismo o preguntar a la profe", correct: true, fb: "¡Eso es! Las IA también se equivocan, hay que comprobar." },
+            { t: "Creerlo porque lo dice una IA", correct: false, fb: "Una IA puede fallar, como cualquiera. Compruébalo siempre." },
+            { t: "No usar nunca más el ordenador", correct: false, fb: "No hace falta ser tan drástico: solo hay que comprobar los datos." },
+          ],
+        },
+        4: {
+          text: "Una IA te dice que existe de verdad un animal llamado «lobo de tres colas». ¿Qué está pasando?",
+          options: [
+            { t: "La IA se ha inventado la respuesta (esto se llama «alucinación»)", correct: true, fb: "Correcto: las IA a veces inventan datos que parecen ciertos pero no lo son." },
+            { t: "Todo lo que dice una IA es siempre cierto", correct: false, fb: "No: las IA pueden inventarse cosas con total seguridad en el tono." },
+            { t: "Los animales inventados solo aparecen en dibujos, nunca en textos de IA", correct: false, fb: "Las IA también pueden inventar datos falsos en cualquier texto." },
+          ],
+        },
+        5: {
+          text: "Usas una IA para resumir un libro y menciona un capítulo que no existe en el libro real. ¿Qué deberías hacer?",
+          options: [
+            { t: "Comprobarlo en el libro real antes de entregar el resumen", correct: true, fb: "Exacto: siempre hay que verificar los datos importantes." },
+            { t: "Entregarlo tal cual, una IA nunca se equivoca", correct: false, fb: "Sí se equivoca: puede inventar capítulos, datos o citas." },
+            { t: "Borrar el libro porque la IA tiene razón siempre", correct: false, fb: "Al revés: el libro real es la fuente fiable, no la IA." },
+          ],
+        },
+        6: {
+          text: "Le pides a una IA información sobre un tema científico y responde muy segura, pero contradice tu libro de texto. ¿Qué haces?",
+          options: [
+            { t: "Contrastarlo con otra fuente fiable (libro, profe, web oficial) antes de creerlo", correct: true, fb: "¡Perfecto! Contrastar fuentes es la clave del pensamiento crítico." },
+            { t: "Confiar en la IA porque suena muy convincente", correct: false, fb: "Sonar convincente no es lo mismo que tener razón." },
+            { t: "Poner las dos respuestas en el trabajo sin comprobar cuál es correcta", correct: false, fb: "Mejor comprobar y quedarte con la respuesta verificada." },
+          ],
+        },
+      };
+      return sets[course];
+    },
+  },
+  {
+    id: "m4-6", module: 4, icon: "🖼️", title: "¿Es real o lo hizo una IA?",
+    short: "Detecta imágenes, vídeos o audios creados para engañar",
+    engine: "phishing",
+    build(course) {
+      const sets = {
+        3: [
+          { text: "Una foto donde tu compañero vuela con superpoderes, compartida como si fuera real.", phishing: true },
+          { text: "Una foto normal de la excursión del cole hecha por la profe con su cámara.", phishing: false },
+        ],
+        4: [
+          { text: "Un vídeo donde un famoso parece regalar tablets gratis a quien escriba sus datos.", phishing: true },
+          { text: "Un dibujo hecho con una app de IA, presentado claramente como «dibujo hecho con IA» para una tarea de clase.", phishing: false },
+          { text: "Una imagen «demasiado perfecta» de un premio que has ganado sin haber participado en nada.", phishing: true },
+        ],
+        5: [
+          { text: "Un audio que suena a la voz de un familiar pidiendo dinero urgente por un problema raro.", phishing: true },
+          { text: "Una infografía hecha con IA que usa tu profe, indicando claramente que la imagen es generada por IA.", phishing: false },
+          { text: "Una noticia sin fuente ni firma, con una imagen muy dramática, que nadie más está contando.", phishing: true },
+        ],
+        6: [
+          { text: "Un vídeo corto donde un personaje público parece decir algo muy raro que nunca dijo (la voz y la cara pueden estar generadas).", phishing: true },
+          { text: "Un artículo de una web de noticias conocida, con autor y fecha, sobre un tema normal.", phishing: false },
+          { text: "Una imagen viral de «última hora» sin ningún medio ni fuente que la respalde.", phishing: true },
+        ],
+      };
+      return { rounds: sets[course] };
+    },
+  },
+  {
+    id: "m4-7", module: 4, icon: "🔒", title: "IA y tus datos",
+    short: "Decide qué es seguro contarle a un chatbot",
+    engine: "phishing",
+    build(course) {
+      const sets = {
+        3: [
+          { text: "Un chatbot te pregunta tu nombre completo y la dirección de tu casa para «ser tu amigo».", phishing: true },
+          { text: "Le preguntas a un chatbot educativo cuánto es 7 x 8.", phishing: false },
+        ],
+        4: [
+          { text: "Una app de IA te pide una foto tuya con el uniforme del cole y tu nombre para un juego.", phishing: true },
+          { text: "Le pides a una IA que te explique qué es un volcán.", phishing: false },
+          { text: "Un chatbot te pide el teléfono de tus padres para darte «un premio».", phishing: true },
+        ],
+        5: [
+          { text: "Una IA de «amigo virtual» te pide que le cuentes secretos personales tuyos o de tu familia.", phishing: true },
+          { text: "Le pides ideas a una IA para organizar un trabajo de clase sobre reciclaje.", phishing: false },
+          { text: "Un asistente de IA pide acceso a tus fotos y contactos «para funcionar mejor», sin explicar por qué.", phishing: true },
+        ],
+        6: [
+          { text: "Un chatbot de IA que no conoces te pide tu contraseña del cole para «verificar tu cuenta».", phishing: true },
+          { text: "Usas una IA del centro, autorizada por el profe, para practicar inglés con frases sin datos personales.", phishing: false },
+          { text: "Una app de IA pide tu ubicación en todo momento para un juego que no la necesita.", phishing: true },
+        ],
+      };
+      return { rounds: sets[course], instruction: "Decide si deberías compartir esa información con un chatbot o app de IA.", icon: "🔒", trueLabel: "⚠️ Mejor no compartirlo", falseLabel: "✅ No pasa nada por decirlo" };
+    },
+  },
+  {
+    id: "m4-8", module: 4, icon: "🧠", title: "Usa la IA con cabeza",
+    short: "Decide qué es un uso responsable de la IA",
+    engine: "quiz",
+    build(course) {
+      const sets = {
+        3: {
+          text: "Un compañero copia tal cual lo que le dice una IA para su dibujo de clase, sin pensar nada él. ¿Qué le dirías?",
+          options: [
+            { t: "Que use la IA como ayuda, pero que piense y decida él también", correct: true, fb: "¡Así es! La IA ayuda, pero quien decide y aprende eres tú." },
+            { t: "Que está genial, cuanto menos pienses mejor", correct: false, fb: "Al revés: si no piensas, no aprendes nada." },
+            { t: "Que no use nunca ordenadores", correct: false, fb: "No hace falta prohibirlo, solo usarlo con cabeza." },
+          ],
+        },
+        4: {
+          text: "Usas una IA para que te dé ideas de un trabajo sobre animales. ¿Qué es lo correcto?",
+          options: [
+            { t: "Usar las ideas como punto de partida, escribirlo con tus palabras y comprobar los datos", correct: true, fb: "Exacto: la IA da ideas, pero el trabajo final lo haces y compruebas tú." },
+            { t: "Copiar y pegar el texto de la IA tal cual y ponerle tu nombre", correct: false, fb: "Eso no es un trabajo tuyo, y además puede tener errores." },
+            { t: "No apuntar de dónde salieron las ideas", correct: false, fb: "Es mejor ser honesto sobre cómo hiciste el trabajo." },
+          ],
+        },
+        5: {
+          text: "Tu compañera entrega como propio un resumen que le hizo una IA entero, sin leerlo ni cambiar nada. ¿Qué problema hay?",
+          options: [
+            { t: "No ha aprendido nada y además no es un trabajo hecho de verdad por ella", correct: true, fb: "Correcto: usar la IA sin pensar no sustituye al aprendizaje." },
+            { t: "Ningún problema, el resultado es igual de válido", correct: false, fb: "El resultado puede parecer válido, pero ella no ha aprendido ni comprobado nada." },
+            { t: "El único problema es que se puede notar el estilo de la IA", correct: false, fb: "El problema de fondo es no aprender ni verificar, no solo el estilo." },
+          ],
+        },
+        6: {
+          text: "Vas a usar una IA para tu trabajo de Sociales. ¿Cuál es la forma responsable de hacerlo?",
+          options: [
+            { t: "Usarla para organizar ideas o practicar, comprobar los datos importantes y decir que la usaste si el profe lo pide", correct: true, fb: "¡Perfecto! Eso es usar la IA como ayuda, con honestidad y sentido crítico." },
+            { t: "Usarla para escribirlo todo y no decir que la usaste", correct: false, fb: "No ser honesto sobre el uso de la IA no es un uso responsable." },
+            { t: "No usarla nunca, aunque el profe lo permita para practicar", correct: false, fb: "Si el profe autoriza un uso concreto, evitarla del todo no es necesario: lo importante es usarla bien." },
+          ],
+        },
+      };
+      return sets[course];
+    },
+  },
+
 ];
 
 function missionsForModule(modId) {
@@ -763,9 +907,28 @@ function getMission(id) {
 function isMissionDone(id) {
   return !!state.progress[id];
 }
-function markDone(id) {
-  state.progress[id] = true;
+function markDone(id, perfect) {
+  const prev = state.progress[id];
+  const prevPerfect = !!(prev && typeof prev === "object" && prev.perfect);
+  state.progress[id] = { done: true, perfect: !!perfect || prevPerfect };
   saveState();
+}
+function moduleResultsSummary(modId) {
+  const missions = missionsForModule(modId);
+  let doneCount = 0, perfectCount = 0;
+  const details = missions.map(m => {
+    const p = state.progress[m.id];
+    const done = !!p;
+    const perfect = !!(p && typeof p === "object" && p.perfect);
+    if (done) doneCount++;
+    if (perfect) perfectCount++;
+    return { id: m.id, title: m.title, icon: m.icon, done, perfect };
+  });
+  const total = missions.length;
+  const points = perfectCount * 2 + (doneCount - perfectCount) * 1;
+  const maxPoints = total * 2;
+  const score10 = maxPoints ? Math.round((points / maxPoints) * 100) / 10 : 0;
+  return { details, total, doneCount, perfectCount, score10 };
 }
 function totalProgress() {
   const done = Object.keys(state.progress).length;
@@ -845,6 +1008,18 @@ function openModule(modId) {
   list.innerHTML = "";
   const missions = missionsForModule(modId);
   missions.forEach((m, idx) => {
+    if (modId === 4 && idx === 0) {
+      const h = document.createElement("div");
+      h.className = "mission-group-title";
+      h.textContent = "🔒 Ciberseguridad";
+      list.appendChild(h);
+    }
+    if (modId === 4 && idx === 4) {
+      const h = document.createElement("div");
+      h.className = "mission-group-title";
+      h.textContent = "🤖 Inteligencia Artificial";
+      list.appendChild(h);
+    }
     const done = isMissionDone(m.id);
     const item = document.createElement("div");
     item.className = "mission-item" + (done ? " done" : "");
@@ -856,7 +1031,98 @@ function openModule(modId) {
     item.onclick = () => startMission(m.id);
     list.appendChild(item);
   });
+  renderModuleResultsPanel(modId);
   showScreen("screen-missions");
+}
+
+/* ============================================================
+   RESULTADOS DE MÓDULO (calificación módulo 4) + exportar PNG
+   ============================================================ */
+function renderModuleResultsPanel(modId) {
+  let panel = document.getElementById("module-results-panel");
+  const list = document.getElementById("mission-list");
+  if (!panel) {
+    panel = document.createElement("div");
+    panel.id = "module-results-panel";
+    panel.className = "module-results-panel";
+    list.insertAdjacentElement("afterend", panel);
+  }
+  if (modId !== 4) {
+    panel.hidden = true;
+    panel.innerHTML = "";
+    return;
+  }
+  panel.hidden = false;
+  const r = moduleResultsSummary(4);
+  const pct = r.total ? Math.round((r.doneCount / r.total) * 100) : 0;
+  panel.innerHTML = `
+    <div class="results-summary">
+      <div class="results-title">📊 Tus resultados de este módulo</div>
+      <div class="results-bar"><div class="results-fill" style="width:${pct}%"></div></div>
+      <div class="results-stats">${r.doneCount}/${r.total} misiones hechas · ${r.perfectCount} perfectas a la primera</div>
+      <button class="btn btn-secondary" id="btn-export-results">📷 Exportar resultados</button>
+    </div>`;
+  const btn = document.getElementById("btn-export-results");
+  if (btn) btn.onclick = () => exportModuleResultsPNG(modId);
+}
+
+function exportModuleResultsPNG(modId) {
+  const mod = MODULES.find(m => m.id === modId);
+  const r = moduleResultsSummary(modId);
+  if (r.total === 0) { toast("No hay misiones en este módulo 🙂"); return; }
+  const W = 640;
+  const rowH = 34;
+  const headerH = 96;
+  const footH = 34;
+  const H = headerH + r.details.length * rowH + footH;
+  const scale = 2;
+  const out = document.createElement("canvas");
+  out.width = W * scale;
+  out.height = H * scale;
+  const ctx = out.getContext("2d");
+  ctx.scale(scale, scale);
+
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = "#1f3050";
+  ctx.fillRect(0, 0, W, headerH);
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 20px 'Segoe UI', Arial, sans-serif";
+  ctx.fillText("📊 NetKids · " + mod.title, 16, 30);
+  ctx.font = "13px 'Segoe UI', Arial, sans-serif";
+  ctx.fillText("Nombre: " + (state.name || "—") + "   ·   Curso: " + (state.course ? state.course + "º" : "—") + "   ·   Fecha: " + new Date().toLocaleDateString(), 16, 55);
+  ctx.fillText("Puntuación de referencia: " + r.score10 + " / 10   ·   Misiones perfectas a la primera: " + r.perfectCount + "/" + r.total, 16, 76);
+
+  let y = headerH + 8;
+  ctx.font = "14px 'Segoe UI', Arial, sans-serif";
+  r.details.forEach(d => {
+    ctx.fillStyle = d.perfect ? "#ecfdf5" : d.done ? "#fff7ed" : "#f8fafc";
+    ctx.fillRect(12, y, W - 24, rowH - 6);
+    ctx.fillStyle = "#1e293b";
+    const status = d.perfect ? "✅ Perfecta" : d.done ? "⚠️ Con fallos" : "⬜ Pendiente";
+    ctx.textAlign = "left";
+    ctx.fillText(`${d.icon} ${d.title}`, 20, y + 20);
+    ctx.textAlign = "right";
+    ctx.fillText(status, W - 20, y + 20);
+    ctx.textAlign = "left";
+    y += rowH;
+  });
+
+  ctx.font = "italic 11px 'Segoe UI', Arial, sans-serif";
+  ctx.fillStyle = "#64748b";
+  ctx.fillText("Puntuación orientativa calculada por la app; la calificación final la decide el profesor.", 16, y + 20);
+
+  const safe = s => (s || "").toString().replace(/[^a-z0-9áéíóúñ _-]/gi, "").trim().replace(/\s+/g, "_");
+  const fname = "NetKids_Resultados_M" + modId + "_" + (state.course || "") + "_" + (safe(state.name) || "alumno") + ".png";
+  out.toBlob(blob => {
+    const a = document.createElement("a");
+    a.download = fname;
+    a.href = URL.createObjectURL(blob);
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    toast("Resultados exportados 📷 Súbelos al aula virtual o envíaselos al profe");
+  }, "image/png");
 }
 
 /* ============================================================
@@ -886,8 +1152,8 @@ function startMission(id) {
   showScreen("screen-mission");
 }
 
-function completeMission(successMsg) {
-  markDone(currentMissionId);
+function completeMission(successMsg, perfect) {
+  markDone(currentMissionId, perfect);
   toast(successMsg || "¡Misión completada! 🎉");
 }
 
@@ -1160,7 +1426,7 @@ function renderQuizEngine(stage, cfg) {
       fb.textContent = opt.fb;
       if (opt.correct) {
         const stars = mistakes === 0 ? 3 : (mistakes === 1 ? 2 : 1);
-        setTimeout(() => completeMission(`¡Misión completada! 🎉 ${"⭐".repeat(stars)}${"☆".repeat(3 - stars)}`), 400);
+        setTimeout(() => completeMission(`¡Misión completada! 🎉 ${"⭐".repeat(stars)}${"☆".repeat(3 - stars)}`, mistakes === 0), 400);
       } else {
         mistakes++;
         setTimeout(() => choices.querySelectorAll(".choice-btn").forEach(x => x.disabled = false), 900);
@@ -1429,15 +1695,14 @@ function renderPasswordEngine(stage, cfg) {
   card.innerHTML = `<div class="instructions"><span class="bubble-icon">🔑</span><span>De cada pareja, elige la contraseña más segura.</span></div>`;
 
   let idx = 0;
-  let correct = 0;
-  const roundsTotal = Math.ceil(cfg.rounds.length / 1);
+  let correctCount = 0;
   const wrap = document.createElement("div");
   card.appendChild(wrap);
 
   function renderRound() {
     wrap.innerHTML = "";
     if (idx >= cfg.rounds.length) {
-      completeMission();
+      completeMission(undefined, correctCount === cfg.rounds.length);
       return;
     }
     const r = cfg.rounds[idx];
@@ -1460,6 +1725,7 @@ function renderPasswordEngine(stage, cfg) {
       b.onclick = () => {
         const saidSecure = i === 0;
         const isCorrect = saidSecure === !r.weak;
+        if (isCorrect) correctCount++;
         choices.querySelectorAll("button").forEach(x => x.disabled = true);
         b.classList.add(isCorrect ? "correct" : "wrong");
         toast(isCorrect ? "¡Bien visto! ✅" : "Esa no era la respuesta correcta ❌");
@@ -1478,16 +1744,19 @@ function renderPasswordEngine(stage, cfg) {
 function renderPhishingEngine(stage, cfg) {
   const card = document.createElement("div");
   card.className = "stage-card";
-  card.innerHTML = `<div class="instructions"><span class="bubble-icon">🎣</span><span>Decide si cada situación es segura o un intento de engaño (phishing).</span></div>`;
+  const instr = cfg.instruction || "Decide si cada situación es segura o un intento de engaño (phishing).";
+  const bubbleIcon = cfg.icon || "🎣";
+  card.innerHTML = `<div class="instructions"><span class="bubble-icon">${bubbleIcon}</span><span>${instr}</span></div>`;
 
   let idx = 0;
+  let correctCount = 0;
   const wrap = document.createElement("div");
   card.appendChild(wrap);
 
   function renderRound() {
     wrap.innerHTML = "";
     if (idx >= cfg.rounds.length) {
-      completeMission();
+      completeMission(undefined, correctCount === cfg.rounds.length);
       return;
     }
     const r = cfg.rounds[idx];
@@ -1497,12 +1766,15 @@ function renderPhishingEngine(stage, cfg) {
     wrap.appendChild(p);
     const choices = document.createElement("div");
     choices.className = "choice-grid";
-    [["⚠️ Es phishing / peligroso", true], ["✅ Es seguro", false]].forEach(([label, val]) => {
+    const trueLabel = cfg.trueLabel || "⚠️ Es phishing / peligroso";
+    const falseLabel = cfg.falseLabel || "✅ Es seguro";
+    [[trueLabel, true], [falseLabel, false]].forEach(([label, val]) => {
       const b = document.createElement("button");
       b.className = "choice-btn";
       b.textContent = label;
       b.onclick = () => {
         const isCorrect = val === r.phishing;
+        if (isCorrect) correctCount++;
         choices.querySelectorAll("button").forEach(x => x.disabled = true);
         b.classList.add(isCorrect ? "correct" : "wrong");
         toast(isCorrect ? "¡Buen ojo! ✅" : "Ojo, revísalo de nuevo la próxima vez ❌");

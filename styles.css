@@ -407,3 +407,18 @@ body{
 .sb-device .sb-body{touch-action:none;}
 .pt-canvas-wrap .port-dot{touch-action:manipulation;}
 .tray-device{touch-action:manipulation;}
+
+/* ============================================================
+   MÓDULO 4: separador de secciones y panel de resultados
+   ============================================================ */
+.mission-group-title{font-size:.72rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
+  color:var(--ink-soft);margin:6px 2px 0;padding-top:10px;border-top:1px dashed #d8dee9;}
+.mission-list .mission-group-title:first-child{border-top:none;padding-top:0;margin-top:0;}
+
+.module-results-panel{margin-top:4px;}
+.results-summary{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;}
+.results-title{font-weight:800;font-size:.85rem;color:#1e293b;}
+.results-bar{height:8px;border-radius:6px;background:#e2e8f0;overflow:hidden;}
+.results-fill{height:100%;background:linear-gradient(90deg,var(--accent-2),var(--good));width:0%;transition:width .4s;}
+.results-stats{font-size:.76rem;color:var(--ink-soft);}
+.results-summary .btn{align-self:flex-start;margin-top:4px;}
