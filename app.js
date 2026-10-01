@@ -20,6 +20,7 @@ const DEVICE_LIB = {
   camera:    { icon: "📷", label: "Cámara IP" },
   server:    { icon: "🗄️", label: "Servidor" },
   keyboard:  { icon: "⌨️", label: "Teclado" },
+  ont:       { icon: "🌐", label: "Internet (fibra)" },
 };
 
 /* ============================================================
@@ -54,10 +55,27 @@ const DEVICE_SVG = {
     <circle cx="26" cy="50" r="2.2" fill="#22c55e"/><circle cx="32" cy="50" r="2.2" fill="#f59e0b"/>
   </svg>`,
   pc: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="12" width="48" height="32" rx="3" fill="#2a3346" stroke="#161c28" stroke-width="2"/>
-    <rect x="12" y="16" width="40" height="24" rx="2" fill="#7fd1ff"/>
-    <rect x="26" y="44" width="12" height="6" fill="#2a3346"/>
-    <rect x="18" y="50" width="28" height="4" rx="2" fill="#2a3346"/>
+    <path d="M13 14 h38 a3 3 0 0 1 3 3 v25 h-44 v-25 a3 3 0 0 1 3 -3z" fill="#2a3346" stroke="#161c28" stroke-width="2"/>
+    <rect x="14" y="18" width="36" height="21" rx="1.5" fill="#7fd1ff"/>
+    <path d="M4 44 h56 l-4 7 a2 2 0 0 1 -2 1.2 h-44 a2 2 0 0 1 -2 -1.2z" fill="#5b6b85" stroke="#33405a" stroke-width="2" stroke-linejoin="round"/>
+    <rect x="26" y="44.5" width="12" height="2.6" rx="1.3" fill="#33405a"/>
+  </svg>`,
+  ont: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 44 a10 10 0 0 1 1-20 a14 14 0 0 1 26-3 a11 11 0 0 1 2 23z" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/>
+    <text x="32" y="38" text-anchor="middle" font-family="Arial" font-weight="700" font-size="10" fill="#1d4ed8">Internet</text>
+    <rect x="22" y="47" width="20" height="9" rx="2" fill="#5b6b85" stroke="#33405a" stroke-width="1.5"/>
+    <circle cx="27" cy="51.5" r="1.4" fill="#22c55e"/><circle cx="32" cy="51.5" r="1.4" fill="#22c55e"/>
+  </svg>`,
+  headset: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14 36 v-6 a18 18 0 0 1 36 0 v6" fill="none" stroke="#2a3346" stroke-width="5" stroke-linecap="round"/>
+    <rect x="8" y="34" width="12" height="18" rx="5" fill="#3a4a66" stroke="#1f2a40" stroke-width="2"/>
+    <rect x="44" y="34" width="12" height="18" rx="5" fill="#3a4a66" stroke="#1f2a40" stroke-width="2"/>
+  </svg>`,
+  keyboard: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="4" y="20" width="56" height="26" rx="3" fill="#5b6b85" stroke="#33405a" stroke-width="2"/>
+    <g fill="#e2e8f0"><rect x="9" y="25" width="6" height="5" rx="1"/><rect x="17" y="25" width="6" height="5" rx="1"/><rect x="25" y="25" width="6" height="5" rx="1"/><rect x="33" y="25" width="6" height="5" rx="1"/><rect x="41" y="25" width="6" height="5" rx="1"/><rect x="49" y="25" width="6" height="5" rx="1"/>
+    <rect x="9" y="32" width="6" height="5" rx="1"/><rect x="17" y="32" width="6" height="5" rx="1"/><rect x="25" y="32" width="6" height="5" rx="1"/><rect x="33" y="32" width="6" height="5" rx="1"/><rect x="41" y="32" width="6" height="5" rx="1"/><rect x="49" y="32" width="6" height="5" rx="1"/>
+    <rect x="17" y="39" width="30" height="4" rx="1"/></g>
   </svg>`,
   tablet: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
     <rect x="16" y="8" width="32" height="48" rx="5" fill="#2a3346" stroke="#161c28" stroke-width="2"/>
@@ -99,7 +117,7 @@ const DEVICE_SVG = {
    MOTOR DE TOPOLOGÍA: puertos reales + cables (estilo Packet Tracer)
    ============================================================ */
 const DEVICE_PORTS = {
-  pc:       [{ id: "eth",  type: "rj45",   label: "Ethernet (RJ45)" }, { id: "usb", type: "usb-a", label: "USB-A" }, { id: "hdmi", type: "hdmi", label: "HDMI" }, { id: "wifi", type: "wifi", label: "WiFi" }],
+  pc:       [{ id: "eth",  type: "rj45",   label: "Ethernet (RJ45)" }, { id: "usb", type: "usb-a", label: "USB-A" }, { id: "usb2", type: "usb-a", label: "USB-A (2)" }, { id: "hdmi", type: "hdmi", label: "HDMI" }, { id: "wifi", type: "wifi", label: "WiFi" }, { id: "bt", type: "bluetooth", label: "Bluetooth" }],
   tablet:   [{ id: "wifi", type: "wifi",   label: "WiFi" }, { id: "bt", type: "bluetooth", label: "Bluetooth" }, { id: "usbc", type: "usb-c", label: "USB-C" }],
   printer:  [{ id: "usb",  type: "usb-a",  label: "USB-A" }, { id: "eth", type: "rj45", label: "Ethernet (RJ45)" }],
   router:   [{ id: "wan",  type: "rj45",   label: "WAN (RJ45)" }, { id: "lan1", type: "rj45", label: "LAN1 (RJ45)" }, { id: "lan2", type: "rj45", label: "LAN2 (RJ45)" }, { id: "wifi", type: "wifi", label: "WiFi" }],
@@ -111,26 +129,28 @@ const DEVICE_PORTS = {
   camera:   [{ id: "eth",  type: "rj45",   label: "Ethernet (RJ45)" }, { id: "wifi", type: "wifi", label: "WiFi" }],
   server:   [{ id: "eth1", type: "rj45",   label: "Puerto 1 (RJ45)" }, { id: "eth2", type: "rj45", label: "Puerto 2 (RJ45)" }],
   keyboard: [{ id: "usb",  type: "usb-a",  label: "USB-A" }, { id: "bt", type: "bluetooth", label: "Bluetooth" }],
+  ont:      [{ id: "eth",  type: "rj45",   label: "Salida a internet (RJ45)" }],
 };
 
 const CABLE_DEFS = {
-  rj45:      { label: "Cable de red (RJ45)", icon: "🔌", color: "#06b6d4", category: "cable",    matches: t => t === "rj45",
-               swatchType: "rj45",  desc: "Conector ancho con muescas. Para internet por cable: ordenadores, switches y routers." },
-  usb:       { label: "Cable USB",           icon: "🔲", color: "#a78bfa", category: "cable",    matches: t => t === "usb-a" || t === "usb-c",
-               swatchType: "usb-a", desc: "Rectangular (USB-A) u ovalado (USB-C). Para teclados, impresoras o cargar dispositivos." },
-  hdmi:      { label: "Cable HDMI",          icon: "📺", color: "#f59e0b", category: "cable",    matches: t => t === "hdmi",
-               swatchType: "hdmi",  desc: "Conector trapezoidal azul. Para enviar imagen y sonido a una pantalla o Smart TV." },
-  wifi:      { label: "WiFi",                icon: "📶", color: "#22c55e", category: "wireless", matches: t => t === "wifi",
+  rj45:      { label: "Cable de red (RJ45)", icon: "", color: "#06b6d4", category: "cable",    matches: t => t === "rj45",
+               swatchType: "rj45",  desc: "Conector cuadrado con 8 contactos dorados y una pestaña de enganche. Para internet por cable: ordenadores, switches y routers." },
+  usb:       { label: "Cable USB",           icon: "", color: "#a78bfa", category: "cable",    matches: t => t === "usb-a" || t === "usb-c",
+               swatchType: "usb-a", desc: "Rectangular con una lengüeta dentro (USB-A) u ovalado y pequeño (USB-C). Para teclados, impresoras o cargar dispositivos." },
+  hdmi:      { label: "Cable HDMI",          icon: "", color: "#f59e0b", category: "cable",    matches: t => t === "hdmi",
+               swatchType: "hdmi",  desc: "Conector plano y ancho con las dos esquinas de abajo cortadas. Para enviar imagen y sonido a una pantalla o Smart TV." },
+  wifi:      { label: "WiFi",                icon: "", color: "#22c55e", category: "wireless", matches: t => t === "wifi",
                swatchType: "wifi",  desc: "Sin cable: conexión inalámbrica a internet por ondas de radio." },
   bluetooth: { label: "Bluetooth",           icon: "", color: "#6366f1", category: "wireless", matches: t => t === "bluetooth",
                swatchType: "bluetooth", desc: "Sin cable: conexión inalámbrica de corto alcance entre aparatos cercanos." },
 };
 const SIMPLE_TOOLS = [
-  { key: "cable",    label: "Cable",         icon: "🔌", color: "#06b6d4", swatchType: "rj45", desc: "Cualquier cable físico que une dos aparatos." },
-  { key: "wireless", label: "Inalámbrico",   icon: "📶", color: "#22c55e", swatchType: "wifi", desc: "Conexión sin cables: WiFi o Bluetooth." },
+  { key: "cable",    label: "Cable",         icon: "", color: "#06b6d4", swatchType: "rj45", desc: "Cualquier cable físico que une dos aparatos." },
+  { key: "wireless", label: "Inalámbrico",   icon: "", color: "#22c55e", swatchType: "wifi", desc: "Conexión sin cables: WiFi o Bluetooth." },
 ];
 
-const PORT_ICON = { rj45: "🔌", "usb-a": "🔲", "usb-c": "🔳", hdmi: "📺", wifi: "📶", bluetooth: "" };
+const PORT_SHORT = { rj45: "RJ45", "usb-a": "USB", "usb-c": "USB-C", hdmi: "HDMI", wifi: "WiFi", bluetooth: "Bluetooth" };
+const PORT_NAME = { rj45: "RJ45 (red)", "usb-a": "USB", "usb-c": "USB-C", hdmi: "HDMI", wifi: "WiFi", bluetooth: "Bluetooth" };
 
 /* Iconos reales de conector, dibujados a escala para que se reconozcan en un dispositivo de verdad:
    RJ45 con sus 8 pines dorados y la pestaña del clip, USB-A/USB-C con su silueta exacta, HDMI trapezoidal,
@@ -148,23 +168,24 @@ const PORT_SVG = {
     </g>
   </svg>`,
   "usb-a": `<svg viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
-    <rect x="4" y="16" width="40" height="18" rx="2" fill="#cbd5e1" stroke="#475569" stroke-width="2"/>
-    <rect x="9" y="20.5" width="30" height="9" fill="#0f172a"/>
+    <rect x="5" y="15" width="38" height="18" rx="1.5" fill="#cbd5e1" stroke="#475569" stroke-width="2"/>
+    <rect x="9" y="19" width="30" height="10" fill="#0f172a"/>
+    <rect x="11" y="19" width="26" height="4.5" fill="#2563eb"/>
+    <g fill="#facc15"><rect x="13.5" y="23.5" width="3" height="2"/><rect x="19.5" y="23.5" width="3" height="2"/><rect x="25.5" y="23.5" width="3" height="2"/><rect x="31.5" y="23.5" width="3" height="2"/></g>
   </svg>`,
   "usb-c": `<svg viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
     <rect x="8" y="16" width="32" height="16" rx="8" fill="#cbd5e1" stroke="#475569" stroke-width="2"/>
     <rect x="13" y="20" width="22" height="8" rx="4" fill="#0f172a"/>
   </svg>`,
   "hdmi": `<svg viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
-    <polygon points="8,10 40,10 36,32 14,32 8,24" fill="#1e293b" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round"/>
-    <rect x="13" y="15" width="24" height="13" rx="1" fill="#0f172a"/>
-    <g fill="#cbd5e1">
-      <rect x="15" y="17" width="1.8" height="4"/><rect x="18.4" y="17" width="1.8" height="4"/>
-      <rect x="21.8" y="17" width="1.8" height="4"/><rect x="25.2" y="17" width="1.8" height="4"/>
-      <rect x="28.6" y="17" width="1.8" height="4"/><rect x="32" y="17" width="1.8" height="4"/>
-      <rect x="16.7" y="22.5" width="1.8" height="4"/><rect x="20.1" y="22.5" width="1.8" height="4"/>
-      <rect x="23.5" y="22.5" width="1.8" height="4"/><rect x="26.9" y="22.5" width="1.8" height="4"/>
-      <rect x="30.3" y="22.5" width="1.8" height="4"/>
+    <path d="M3 15 H45 V26 L39 33 H9 L3 26 Z" fill="#cbd5e1" stroke="#475569" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M7 18.5 H41 V25 L37 29.5 H11 L7 25 Z" fill="#0f172a"/>
+    <rect x="10" y="21.5" width="28" height="4" rx="0.8" fill="#334155"/>
+    <g fill="#facc15">
+      <rect x="11" y="20.3" width="1.4" height="1.6"/><rect x="13.8" y="20.3" width="1.4" height="1.6"/><rect x="16.6" y="20.3" width="1.4" height="1.6"/><rect x="19.4" y="20.3" width="1.4" height="1.6"/><rect x="22.2" y="20.3" width="1.4" height="1.6"/>
+      <rect x="25" y="20.3" width="1.4" height="1.6"/><rect x="27.8" y="20.3" width="1.4" height="1.6"/><rect x="30.6" y="20.3" width="1.4" height="1.6"/><rect x="33.4" y="20.3" width="1.4" height="1.6"/><rect x="36.2" y="20.3" width="1.4" height="1.6"/>
+      <rect x="12.4" y="25.1" width="1.4" height="1.6"/><rect x="15.2" y="25.1" width="1.4" height="1.6"/><rect x="18" y="25.1" width="1.4" height="1.6"/><rect x="20.8" y="25.1" width="1.4" height="1.6"/><rect x="23.6" y="25.1" width="1.4" height="1.6"/>
+      <rect x="26.4" y="25.1" width="1.4" height="1.6"/><rect x="29.2" y="25.1" width="1.4" height="1.6"/><rect x="32" y="25.1" width="1.4" height="1.6"/><rect x="34.8" y="25.1" width="1.4" height="1.6"/>
     </g>
   </svg>`,
   /* logo estándar de WiFi (igual que en routers, móviles y barras de estado) */
@@ -188,8 +209,8 @@ function groupsForPorts(ports) {
   return order.filter(g => present.has(g));
 }
 const GROUP_META = {
-  cable:     { label: "Cable",     icon: "🔌" },
-  wifi:      { label: "WiFi",      icon: "📶" },
+  cable:     { label: "Cable",     icon: "" },
+  wifi:      { label: "WiFi",      icon: "" },
   bluetooth: { label: "Bluetooth", icon: "" },
 };
 
@@ -207,7 +228,10 @@ function simplifyPorts(devKey) {
   const out = [];
   const cableRef = real.find(p => categoryOf(p.type) === "cable");
   const wirelessRef = real.find(p => categoryOf(p.type) === "wireless");
-  if (cableRef) out.push({ id: "cable", type: cableRef.type, label: "Cable" });
+  if (["router", "switchd", "server"].includes(devKey)) {
+    // aparatos de red: tantos puertos de cable como tengan de verdad (si no, solo cabría un aparato por cable)
+    real.filter(p => categoryOf(p.type) === "cable").forEach(p => out.push({ id: p.id, type: p.type, label: "Cable" }));
+  } else if (cableRef) out.push({ id: "cable", type: cableRef.type, label: "Cable" });
   if (wirelessRef) out.push({ id: "wireless", type: wirelessRef.type, label: "Inalámbrico" });
   return out;
 }
@@ -238,6 +262,66 @@ function mismatchMessage(typeA, typeB, tool) {
   const def = CABLE_DEFS[tool];
   return `❌ El ${def ? def.label : "cable"} no es compatible con ese puerto. Mira bien el tipo de conector.`;
 }
+
+/* ---- Conexión en dos toques: el cable se deduce de los dos puertos elegidos ---- */
+const WIRELESS_HUBS = ["router", "pc", "tablet", "phone"];
+function inferTool(typeA, typeB) {
+  if (isSimpleMode()) {
+    const ca = categoryOf(typeA), cb = categoryOf(typeB);
+    return ca === cb ? ca : null;
+  }
+  for (const [k, def] of Object.entries(CABLE_DEFS)) if (def.matches(typeA) && def.matches(typeB)) return k;
+  return null;
+}
+function portCapacity(devKey, portType) {
+  if (categoryOf(portType) === "cable") return 1;              // un cable por puerto, como en la realidad
+  if (portType === "wifi" && !isSimpleMode()) return devKey === "router" ? 99 : 1;
+  return WIRELESS_HUBS.includes(devKey) ? 99 : 1;              // router: muchos por WiFi; móvil/tablet/portátil: varios por Bluetooth
+}
+// En 5.º-6.º el puerto WAN del router es solo para la salida a internet (caja de fibra)
+function wanProblem(keyA, portA, keyB, portB) {
+  if (isSimpleMode()) return null;
+  const wanA = keyA === "router" && portA === "wan", wanB = keyB === "router" && portB === "wan";
+  if ((wanA && keyB !== "ont") || (wanB && keyA !== "ont"))
+    return "El puerto WAN del router es la salida a internet: ahí solo va la caja de Internet (fibra). Usa un puerto LAN.";
+  if ((keyA === "ont" && !wanB) || (keyB === "ont" && !wanA))
+    return "La caja de Internet (fibra) se conecta al puerto WAN del router.";
+  return null;
+}
+function portShortLabel(port) {
+  if (isSimpleMode()) return categoryOf(port.type) === "cable" ? "Cable" : "Sin cable";
+  if (port.id === "wan") return "WAN";
+  if (/^lan\d/.test(port.id || "")) return port.id.toUpperCase();
+  return PORT_SHORT[port.type] || port.label;
+}
+function mismatchText(typeA, typeB) {
+  if (isSimpleMode()) return "❌ Un puerto es de cable y el otro sin cables. Elige el mismo tipo en los dos aparatos.";
+  return `❌ No existe un cable que una un puerto ${PORT_NAME[typeA]} con uno ${PORT_NAME[typeB]}. Busca dos puertos del mismo tipo.`;
+}
+function toolLabel(tool) {
+  if (tool === "cable") return "un cable";
+  if (tool === "wireless") return "una conexión sin cables";
+  const d = CABLE_DEFS[tool];
+  return d ? (d.category === "wireless" ? d.label : "un " + d.label.charAt(0).toLowerCase() + d.label.slice(1)) : "un cable";
+}
+function connectorLegendHTML() {
+  const tools = isSimpleMode()
+    ? SIMPLE_TOOLS
+    : Object.entries(CABLE_DEFS).map(([k, d]) => ({ key: k, label: d.label, swatchType: d.swatchType, desc: d.desc }));
+  return tools.map(t => `<div class="legend-row"><span class="port-dot tool-plug" data-type="${t.swatchType}">${PORT_SVG[t.swatchType] || ""}</span>
+    <span class="legend-text"><b>${t.label}</b><br>${t.desc}</span></div>`).join("");
+}
+function makeCaptionedPort(ownerId, port, onClick) {
+  const item = document.createElement("div");
+  item.className = "port-item";
+  item.appendChild(makePortDot(ownerId, port, onClick));
+  const cap = document.createElement("span");
+  cap.className = "port-caption";
+  cap.textContent = portShortLabel(port);
+  item.appendChild(cap);
+  return item;
+}
+
 function renderCableToolbar(containerEl, onSelect, legendEl) {
   containerEl.innerHTML = "";
   const tools = isSimpleMode()
@@ -253,7 +337,7 @@ function renderCableToolbar(containerEl, onSelect, legendEl) {
     swatch.setAttribute("aria-hidden", "true");
     swatch.innerHTML = PORT_SVG[t.swatchType] || "";
     const labelSpan = document.createElement("span");
-    labelSpan.textContent = `${t.icon} ${t.label}`;
+    labelSpan.textContent = t.label;
     b.appendChild(swatch);
     b.appendChild(labelSpan);
     b.onclick = () => {
@@ -279,7 +363,7 @@ function renderCableLegend(legendEl, tools) {
     swatch.innerHTML = PORT_SVG[t.swatchType] || "";
     const text = document.createElement("span");
     text.className = "legend-text";
-    text.innerHTML = `<b>${t.icon} ${t.label}</b><br>${t.desc}`;
+    text.innerHTML = `<b>${t.label}</b><br>${t.desc}`;
     row.appendChild(swatch);
     row.appendChild(text);
     legendEl.appendChild(row);
@@ -333,7 +417,7 @@ function showScreen(id) {
    ============================================================ */
 const MODULES = [
   {
-    id: 1, key: "mod-1", icon: "🔌", title: "Conectar dispositivos",
+    id: 1, key: "mod-1", icon: "🔗", title: "Conectar dispositivos",
     desc: "Aprende a conectar dispositivos reales a la red: cable, WiFi, USB y Bluetooth.",
     css: "mod-1",
   },
@@ -358,7 +442,7 @@ const MODULES = [
 const MISSIONS = [
   // ---------- MÓDULO 1 ----------
   {
-    id: "m1-1", module: 1, icon: "🔌", title: "Conecta los dispositivos",
+    id: "m1-1", module: 1, icon: "🔗", title: "Conecta los dispositivos",
     short: "Arrastra cada aparato a su tipo de conexión",
     engine: "connect",
     build(course) {
@@ -366,7 +450,7 @@ const MISSIONS = [
         3: {
           nodes: [{ id: "A", key: "pc" }, { id: "B", key: "router" }, { id: "C", key: "headset" }, { id: "D", key: "tablet" }],
           objectives: [{ a: "A", b: "B" }, { a: "C", b: "D" }],
-          intro: "Elige arriba el tipo de conexión (Cable o Inalámbrico) y pulsa los puntos de conexión de cada aparato para unirlos.",
+          intro: "Toca un puerto de un aparato y después el puerto del otro aparato: si los dos son de cable (o los dos sin cables), quedarán unidos.",
         },
         4: {
           nodes: [{ id: "A", key: "pc" }, { id: "B", key: "router" }, { id: "C", key: "printer" }, { id: "D", key: "tablet" }],
@@ -376,12 +460,12 @@ const MISSIONS = [
         5: {
           nodes: [{ id: "A", key: "pc" }, { id: "B", key: "switchd" }, { id: "C", key: "router" }, { id: "D", key: "tv" }, { id: "E", key: "phone" }, { id: "F", key: "speaker" }],
           objectives: [{ a: "A", b: "B" }, { a: "B", b: "C" }, { a: "D", b: "A" }, { a: "E", b: "C" }],
-          intro: "Ahora eliges el cable exacto: RJ45, USB, HDMI o una conexión inalámbrica (WiFi/Bluetooth). Fíjate en el tipo de puerto de cada aparato. Ojo: hay un aparato de más que no aparece en los retos.",
+          intro: "Ahora cada aparato muestra sus puertos reales: RJ45, USB, HDMI, WiFi o Bluetooth. Une siempre dos puertos del mismo tipo. Ojo: hay un aparato de más que no aparece en los retos.",
         },
         6: {
           nodes: [{ id: "A", key: "pc" }, { id: "B", key: "switchd" }, { id: "C", key: "router" }, { id: "D", key: "server" }, { id: "E", key: "camera" }, { id: "F", key: "phone" }, { id: "G", key: "tv" }, { id: "H", key: "headset" }, { id: "I", key: "printer" }],
           objectives: [{ a: "A", b: "B" }, { a: "B", b: "C" }, { a: "B", b: "D" }, { a: "E", b: "C" }, { a: "F", b: "C" }, { a: "G", b: "A" }],
-          intro: "Monta una pequeña red de centro: switch, router, servidor, cámara IP, móvil y proyector. Elige siempre el cable o la conexión correcta. Hay dos aparatos de más: solo conecta lo que pide la lista de retos.",
+          intro: "Monta una pequeña red de centro: switch, router, servidor, cámara IP, móvil y proyector. Une siempre dos puertos del mismo tipo. Hay dos aparatos de más: solo conecta lo que pide la lista de retos.",
         },
       };
       return sets[course];
@@ -427,7 +511,7 @@ const MISSIONS = [
         3: {
           nodes: [{ id: "A", key: "tv" }, { id: "B", key: "router" }, { id: "C", key: "phone" }, { id: "D", key: "speaker" }],
           objectives: [{ a: "A", b: "B" }, { a: "C", b: "D" }],
-          intro: "Conecta la Smart TV con el router y el móvil con el altavoz. Elige cable o inalámbrico según corresponda.",
+          intro: "Conecta la Smart TV con el router y el móvil con el altavoz. Une cada pareja por cable o sin cables, según los puertos que tengan.",
         },
         4: {
           nodes: [{ id: "A", key: "pc" }, { id: "B", key: "printer" }, { id: "C", key: "router" }, { id: "D", key: "camera" }],
@@ -442,7 +526,7 @@ const MISSIONS = [
         6: {
           nodes: [{ id: "A", key: "pc" }, { id: "B", key: "switchd" }, { id: "C", key: "router" }, { id: "D", key: "server" }, { id: "E", key: "tv" }, { id: "F", key: "camera" }, { id: "G", key: "printer" }, { id: "H", key: "headset" }],
           objectives: [{ a: "A", b: "B" }, { a: "B", b: "C" }, { a: "B", b: "D" }, { a: "E", b: "C" }, { a: "F", b: "C" }],
-          intro: "Diseña la red completa de una sala: switch, router, servidor, Smart TV y cámara IP. Elige siempre el cable o conexión exacta. Hay dos aparatos de más: comprueba la lista de retos antes de conectar.",
+          intro: "Diseña la red completa de una sala: switch, router, servidor, Smart TV y cámara IP. Une siempre dos puertos del mismo tipo. Hay dos aparatos de más: comprueba la lista de retos antes de conectar.",
         },
       };
       return sets[course];
@@ -1112,7 +1196,7 @@ function exportModuleResultsPNG(modId) {
   ctx.fillStyle = "#64748b";
   ctx.fillText("Puntuación orientativa calculada por la app; la calificación final la decide el profesor.", 16, y + 20);
 
-  const safe = s => (s || "").toString().replace(/[^a-z0-9áéíóúñ _-]/gi, "").trim().replace(/\s+/g, "_");
+  const safe = s => (s || "").toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9 _-]/gi, "").trim().replace(/\s+/g, "_").replace(/_+/g, "_");
   const fname = "NetKids_Resultados_M" + modId + "_" + (state.course || "") + "_" + (safe(state.name) || "alumno") + ".png";
   out.toBlob(blob => {
     const a = document.createElement("a");
@@ -1164,243 +1248,220 @@ function finishButton(container, label) {
   btn.className = "btn btn-primary";
   btn.textContent = label || "Volver al mapa de misiones";
   btn.onclick = () => openModule(getMission(currentMissionId).module);
+  const again = document.createElement("button");
+  again.className = "btn btn-secondary";
+  again.textContent = "🔄 Repetir misión";
+  again.title = "Empezar la misión otra vez desde el principio";
+  again.onclick = () => startMission(currentMissionId);
+  row.appendChild(again);
   row.appendChild(btn);
   container.appendChild(row);
 }
 
-/* ---------- ENGINE: connect (tablero de topología, estilo Packet Tracer) ---------- */
+/* ---------- ENGINE: connect (tablero de topología, estilo Packet Tracer) ----------
+   Uso en dos toques: 1) tocar un puerto de un aparato, 2) tocar el puerto del otro aparato.
+   El cable se deduce de los dos puertos. Cada puerto de cable admite un solo cable.
+   Se puede deshacer, quitar un cable tocándolo o empezar de nuevo. */
 function renderConnectEngine(stage, cfg) {
   const card = document.createElement("div");
   card.className = "stage-card";
   card.innerHTML = `<div class="instructions"><span class="bubble-icon">🧰</span><span>${cfg.intro}</span></div>`;
 
-  const toolbarDiv = document.createElement("div");
-  toolbarDiv.className = "cable-toolbar";
-  card.appendChild(toolbarDiv);
-
-  const legendDiv = document.createElement("div");
-  legendDiv.className = "cable-legend";
-  card.appendChild(legendDiv);
+  const stepBar = document.createElement("div");
+  stepBar.className = "step-bar";
+  card.appendChild(stepBar);
 
   const boardWrap = document.createElement("div");
   boardWrap.className = "topo-board-wrap";
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.classList.add("topo-svg");
-  boardWrap.appendChild(svg);
   const board = document.createElement("div");
   board.className = "topo-board";
   boardWrap.appendChild(board);
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.classList.add("topo-svg");
+  boardWrap.appendChild(svg);
   card.appendChild(boardWrap);
+
+  const tools = document.createElement("div");
+  tools.className = "connect-tools";
+  tools.innerHTML = `<button class="btn btn-secondary" data-act="undo">↶ Deshacer</button>
+    <button class="btn btn-secondary" data-act="reset">🧹 Quitar todos los cables</button>
+    <button class="btn btn-secondary" data-act="help">❓ ¿Qué es cada conector?</button>`;
+  card.appendChild(tools);
+
+  const legend = document.createElement("div");
+  legend.className = "cable-legend";
+  legend.hidden = true;
+  legend.innerHTML = `<div class="legend-title">Así es cada conector</div>` + connectorLegendHTML();
+  card.appendChild(legend);
 
   const objWrap = document.createElement("div");
   objWrap.className = "topo-objectives";
   card.appendChild(objWrap);
 
-  let activeTool = null;
   let pending = null;
-  const madeLinks = [];
-  const usedPortKeys = new Set();
-  const doneSet = new Set();
-  const activeGroupByNode = {};
-  const singleGroupNodes = new Set();
+  let links = [];
   let finished = false;
   let mistakes = 0;
+  const nodeKey = id => cfg.nodes.find(n => n.id === id).key;
+  const devLabel = id => DEVICE_LIB[nodeKey(id)].label;
 
-  renderCableToolbar(toolbarDiv, key => {
-    activeTool = key;
-    pending = null;
-    syncPortVisualState();
-  }, legendDiv);
-
-  function isPortActive(nodeId, type) {
-    if (singleGroupNodes.has(nodeId)) return true;
-    return activeGroupByNode[nodeId] === portGroup(type);
+  function linksOn(nodeId, portId) {
+    return links.filter(l => (l.a.nodeId === nodeId && l.a.portId === portId) || (l.b.nodeId === nodeId && l.b.portId === portId));
   }
-
-  function syncPortVisualState() {
+  function setStep() {
+    if (finished) { stepBar.innerHTML = "🎉 ¡Red terminada! Puedes repetir la misión o volver al mapa."; stepBar.className = "step-bar done"; return; }
+    stepBar.className = "step-bar" + (pending ? " waiting" : "");
+    stepBar.innerHTML = pending
+      ? `<b>Paso 2:</b> ahora toca el puerto del <b>otro aparato</b>. Has elegido <b>${devLabel(pending.nodeId)} · ${portShortLabel(pending)}</b> (tócalo otra vez para cancelar).`
+      : `<b>Paso 1:</b> toca un puerto de un aparato. <span class="muted">Si te equivocas, toca el cable para quitarlo o pulsa ↶ Deshacer.</span>`;
+  }
+  function syncPorts() {
     card.querySelectorAll(".port-dot[data-node]").forEach(dot => {
-      const nodeId = dot.dataset.node, portId = dot.dataset.port, group = dot.dataset.group;
-      const key = nodeId + ":" + portId;
-      dot.classList.toggle("used", usedPortKeys.has(key));
-      dot.classList.toggle("pending", !!(pending && pending.nodeId === nodeId && pending.portId === portId));
-      dot.classList.toggle("inactive", !singleGroupNodes.has(nodeId) && activeGroupByNode[nodeId] !== group);
-    });
-    card.querySelectorAll(".conn-toggle[data-node]").forEach(b => {
-      b.classList.toggle("active", activeGroupByNode[b.dataset.node] === b.dataset.group);
+      const used = linksOn(dot.dataset.node, dot.dataset.port).length > 0;
+      dot.classList.toggle("used", used);
+      dot.classList.toggle("pending", !!(pending && pending.nodeId === dot.dataset.node && pending.portId === dot.dataset.port));
     });
   }
-
-  function setActiveGroup(nodeId, group) {
-    activeGroupByNode[nodeId] = group;
-    syncPortVisualState();
-  }
-
-  function buildConnScreen(nodeId, groups) {
-    const wrap = document.createElement("div");
-    wrap.className = "conn-screen";
-    groups.forEach(g => {
-      const meta = GROUP_META[g];
-      const b = document.createElement("button");
-      b.className = "conn-toggle";
-      b.dataset.node = nodeId;
-      b.dataset.group = g;
-      b.innerHTML = `${meta.icon} ${meta.label}`;
-      b.onclick = () => setActiveGroup(nodeId, g);
-      wrap.appendChild(b);
+  function doneSet() {
+    const s = new Set();
+    cfg.objectives.forEach((ob, i) => {
+      if (links.some(l => (l.a.nodeId === ob.a && l.b.nodeId === ob.b) || (l.a.nodeId === ob.b && l.b.nodeId === ob.a))) s.add(i);
     });
-    return wrap;
+    return s;
+  }
+  function renderObjectives() {
+    const d = doneSet();
+    objWrap.innerHTML = "";
+    cfg.objectives.forEach((ob, i) => {
+      const row = document.createElement("div");
+      row.className = "topo-objective" + (d.has(i) ? " done" : "");
+      row.innerHTML = `<span class="ob-status">${d.has(i) ? "✅" : "⬜"}</span><span>Conecta <b>${devLabel(ob.a)}</b> con <b>${devLabel(ob.b)}</b></span>`;
+      objWrap.appendChild(row);
+    });
+    return d;
+  }
+  function center(el, rect) {
+    const r = el.getBoundingClientRect();
+    return [r.left + r.width / 2 - rect.left, r.top + r.height / 2 - rect.top];
+  }
+  function drawLinks() {
+    svg.innerHTML = "";
+    const rect = boardWrap.getBoundingClientRect();
+    const NS = "http://www.w3.org/2000/svg";
+    links.forEach((link, i) => {
+      const elA = board.querySelector(`#topo-${link.a.nodeId} .port-dot[data-port="${link.a.portId}"]`);
+      const elB = board.querySelector(`#topo-${link.b.nodeId} .port-dot[data-port="${link.b.portId}"]`);
+      if (!elA || !elB) return;
+      const [x1, y1] = center(elA, rect), [x2, y2] = center(elB, rect);
+      // el cable sale hacia abajo de cada puerto y hace una curva por debajo de los aparatos
+      const drop = 46 + (i % 3) * 14;
+      const d = `M${x1},${y1} C${x1},${y1 + drop * 1.6} ${x2},${y2 + drop * 1.6} ${x2},${y2}`;
+      const path = document.createElementNS(NS, "path");
+      path.setAttribute("d", d); path.setAttribute("fill", "none");
+      path.setAttribute("stroke", colorForTool(link.tool)); path.setAttribute("stroke-width", "4"); path.setAttribute("stroke-linecap", "round");
+      if (isWirelessTool(link.tool)) path.setAttribute("stroke-dasharray", "7,6");
+      path.style.pointerEvents = "none";
+      svg.appendChild(path);
+      if (finished) return;
+      const hit = document.createElementNS(NS, "path");
+      hit.setAttribute("d", d); hit.setAttribute("fill", "none");
+      hit.setAttribute("stroke", "#000"); hit.setAttribute("stroke-opacity", "0"); hit.setAttribute("stroke-width", "18");
+      hit.style.pointerEvents = "stroke"; hit.style.cursor = "pointer";
+      hit.addEventListener("click", e => {
+        // si debajo del cable hay un puerto, el toque es para el puerto
+        const port = document.elementsFromPoint(e.clientX, e.clientY).find(el => el.classList && el.classList.contains("port-dot"));
+        if (port) { port.click(); return; }
+        removeLink(link, "Cable quitado 🗑️ Puedes volver a conectarlo.");
+      });
+      svg.appendChild(hit);
+    });
+  }
+  function refresh() { syncPorts(); setStep(); renderObjectives(); drawLinks(); }
+  function removeLink(link, msg) {
+    if (finished) return;
+    links = links.filter(l => l !== link);
+    refresh();
+    if (msg) toast(msg);
   }
 
-  function buildPortList(nodeId, ports, withLabels) {
-    const portList = document.createElement("div");
-    portList.className = "port-list" + (withLabels ? " with-labels" : "");
-    ports.forEach(p => {
-      if (withLabels) {
-        const item = document.createElement("div");
-        item.className = "port-item";
-        item.appendChild(makePortDot(nodeId, p, handleTopoPortClick));
-        const cap = document.createElement("span");
-        cap.className = "port-caption";
-        cap.textContent = p.label;
-        item.appendChild(cap);
-        portList.appendChild(item);
-      } else {
-        portList.appendChild(makePortDot(nodeId, p, handleTopoPortClick));
+  function handlePort(nodeId, portId, type, dotEl) {
+    if (finished) return;
+    const key = nodeKey(nodeId);
+    if (!pending) {
+      if (linksOn(nodeId, portId).length >= portCapacity(key, type)) {
+        toast("Ese puerto ya tiene un cable. Toca el cable para quitarlo o pulsa ↶ Deshacer.");
+        dotEl.classList.add("flash-bad"); setTimeout(() => dotEl.classList.remove("flash-bad"), 500);
+        return;
       }
-    });
-    return portList;
-  }
-
-  function openDeviceZoom(node, dev, ports, groups, single) {
-    card.querySelectorAll(".device-modal-overlay").forEach(m => m.remove());
-    const overlay = document.createElement("div");
-    overlay.className = "device-modal-overlay";
-    overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
-    const modal = document.createElement("div");
-    modal.className = "device-modal";
-    const closeBtn = document.createElement("button");
-    closeBtn.className = "modal-close";
-    closeBtn.textContent = "✕";
-    closeBtn.onclick = () => overlay.remove();
-    modal.appendChild(closeBtn);
-    const panel = document.createElement("div");
-    panel.className = "device-back-panel big";
-    panel.innerHTML = `<div class="back-badge">${dev.icon}</div>
-      <div class="d-name">${dev.label}</div>
-      <div class="back-label">🔧 Parte trasera &middot; puertos reales</div>`;
-    modal.appendChild(panel);
-    if (!single) modal.appendChild(buildConnScreen(node.id, groups));
-    panel.appendChild(buildPortList(node.id, ports, true));
-    overlay.appendChild(modal);
-    card.appendChild(overlay);
-    syncPortVisualState();
+      pending = { nodeId, portId, type };
+      refresh();
+      return;
+    }
+    if (pending.nodeId === nodeId && pending.portId === portId) { pending = null; refresh(); return; }
+    const fail = msg => {
+      mistakes++;
+      dotEl.classList.add("flash-bad");
+      const pEl = card.querySelector(`.port-dot[data-node="${pending.nodeId}"][data-port="${pending.portId}"]`);
+      if (pEl) pEl.classList.add("flash-bad");
+      setTimeout(() => { dotEl.classList.remove("flash-bad"); if (pEl) pEl.classList.remove("flash-bad"); }, 500);
+      toast(msg);
+      pending = null;
+      refresh();
+    };
+    if (pending.nodeId === nodeId) { pending = null; refresh(); toast("Un aparato no se conecta consigo mismo: elige un puerto de OTRO aparato."); return; }
+    if (linksOn(nodeId, portId).length >= portCapacity(key, type)) return fail("Ese puerto ya está ocupado. Cada puerto de cable solo admite un cable.");
+    if (links.some(l => (l.a.nodeId === pending.nodeId && l.b.nodeId === nodeId) || (l.b.nodeId === pending.nodeId && l.a.nodeId === nodeId)))
+      return fail("Esos dos aparatos ya están conectados entre sí.");
+    const tool = inferTool(pending.type, type);
+    if (!tool) return fail(mismatchText(pending.type, type));
+    const wp = wanProblem(nodeKey(pending.nodeId), pending.portId, key, portId);
+    if (wp) return fail(wp);
+    const link = { a: { nodeId: pending.nodeId, portId: pending.portId }, b: { nodeId, portId }, tool };
+    links.push(link);
+    const isObjective = cfg.objectives.some(ob => (ob.a === link.a.nodeId && ob.b === nodeId) || (ob.b === link.a.nodeId && ob.a === nodeId));
+    pending = null;
+    toast(isObjective ? `¡Conectado con ${toolLabel(tool)}! ✅` : `Conectado con ${toolLabel(tool)}, pero esa unión no está en la lista de retos. Puedes quitarla tocando el cable.`);
+    const d = renderObjectives();
+    if (d.size === cfg.objectives.length) {
+      finished = true;
+      const stars = mistakes === 0 ? 3 : (mistakes <= 2 ? 2 : 1);
+      setTimeout(() => completeMission(`¡Misión completada! 🎉 ${"⭐".repeat(stars)}${"☆".repeat(3 - stars)}`, mistakes === 0), 400);
+    }
+    refresh();
   }
 
   cfg.nodes.forEach(node => {
     const dev = DEVICE_LIB[node.key];
-    const ports = portsForDisplay(node.key);
-    const groups = groupsForPorts(ports);
-    const single = groups.length <= 1;
-    if (single) singleGroupNodes.add(node.id);
     const box = document.createElement("div");
     box.className = "topo-device";
     box.id = "topo-" + node.id;
     const panel = document.createElement("div");
     panel.className = "device-back-panel";
-    panel.innerHTML = `<button class="zoom-btn" title="Ver parte trasera">🔍</button>
-      <div class="d-icon-big">${dev.icon}</div><div class="d-name">${dev.label}</div>`;
-    panel.querySelector(".zoom-btn").onclick = () => openDeviceZoom(node, dev, ports, groups, single);
-    panel.appendChild(buildPortList(node.id, ports, false));
+    panel.innerHTML = `<div class="d-glyph">${sbGlyph(node.key)}</div><div class="d-name">${dev.label}</div>`;
+    const list = document.createElement("div");
+    list.className = "port-list with-labels";
+    portsForDisplay(node.key).forEach(p => list.appendChild(makeCaptionedPort(node.id, p, handlePort)));
+    panel.appendChild(list);
     box.appendChild(panel);
-    if (!single) box.appendChild(buildConnScreen(node.id, groups));
     board.appendChild(box);
   });
 
-  syncPortVisualState();
-
-  function renderObjectives() {
-    objWrap.innerHTML = "";
-    cfg.objectives.forEach((ob, i) => {
-      const done = doneSet.has(i);
-      const row = document.createElement("div");
-      row.className = "topo-objective" + (done ? " done" : "");
-      const labelA = DEVICE_LIB[cfg.nodes.find(n => n.id === ob.a).key].label;
-      const labelB = DEVICE_LIB[cfg.nodes.find(n => n.id === ob.b).key].label;
-      row.innerHTML = `<span class="ob-status">${done ? "✅" : "⬜"}</span><span>Conecta <b>${labelA}</b> con <b>${labelB}</b></span>`;
-      objWrap.appendChild(row);
-    });
-  }
-  renderObjectives();
-
-  function drawTopoLinks() {
-    svg.innerHTML = "";
-    const rect = boardWrap.getBoundingClientRect();
-    madeLinks.forEach(link => {
-      const elA = board.querySelector(`#topo-${link.a.nodeId} .port-dot[data-port="${link.a.portId}"]`);
-      const elB = board.querySelector(`#topo-${link.b.nodeId} .port-dot[data-port="${link.b.portId}"]`);
-      if (!elA || !elB) return;
-      const ra = elA.getBoundingClientRect(), rb = elB.getBoundingClientRect();
-      const x1 = ra.left + ra.width / 2 - rect.left, y1 = ra.top + ra.height / 2 - rect.top;
-      const x2 = rb.left + rb.width / 2 - rect.left, y2 = rb.top + rb.height / 2 - rect.top;
-      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      line.setAttribute("x1", x1); line.setAttribute("y1", y1);
-      line.setAttribute("x2", x2); line.setAttribute("y2", y2);
-      line.setAttribute("stroke", colorForTool(link.tool));
-      line.setAttribute("stroke-width", "3");
-      if (isWirelessTool(link.tool)) line.setAttribute("stroke-dasharray", "6,5");
-      svg.appendChild(line);
-    });
-  }
-
-  function handleTopoPortClick(nodeId, portId, type, dotEl) {
+  tools.querySelector('[data-act="undo"]').onclick = () => {
     if (finished) return;
-    if (!isPortActive(nodeId, type)) {
-      toast("Activa antes el tipo de conexión en la pantalla del dispositivo 👆");
-      return;
-    }
-    if (!activeTool) { toast("Elige primero un cable o conexión arriba ☝️"); return; }
-    if (!pending) { pending = { nodeId, portId, type }; syncPortVisualState(); return; }
-    if (pending.nodeId === nodeId && pending.portId === portId) {
-      pending = null; syncPortVisualState(); return;
-    }
-    const ok = canConnect(pending.type, type, activeTool);
-    if (ok) {
-      madeLinks.push({ a: { nodeId: pending.nodeId, portId: pending.portId }, b: { nodeId, portId }, tool: activeTool });
-      usedPortKeys.add(pending.nodeId + ":" + pending.portId);
-      usedPortKeys.add(nodeId + ":" + portId);
-      cfg.objectives.forEach((ob, i) => {
-        const pair1 = ob.a === pending.nodeId && ob.b === nodeId;
-        const pair2 = ob.b === pending.nodeId && ob.a === nodeId;
-        if (pair1 || pair2) doneSet.add(i);
-      });
-      pending = null;
-      toast("¡Conexión correcta! ✅");
-      renderObjectives();
-      syncPortVisualState();
-      drawTopoLinks();
-      if (doneSet.size === cfg.objectives.length) {
-        finished = true;
-        const stars = mistakes === 0 ? 3 : (mistakes <= 2 ? 2 : 1);
-        setTimeout(() => completeMission(`¡Misión completada! 🎉 ${"⭐".repeat(stars)}${"☆".repeat(3 - stars)}`), 400);
-      }
-    } else {
-      mistakes++;
-      const pendNode = pending.nodeId, pendPort = pending.portId;
-      dotEl.classList.add("flash-bad");
-      const pendEl = card.querySelector(`.port-dot[data-node="${pendNode}"][data-port="${pendPort}"]`);
-      if (pendEl) pendEl.classList.add("flash-bad");
-      setTimeout(() => {
-        dotEl.classList.remove("flash-bad");
-        if (pendEl) pendEl.classList.remove("flash-bad");
-      }, 500);
-      toast(mismatchMessage(pending.type, type, activeTool));
-      pending = null;
-      syncPortVisualState();
-    }
-  }
+    if (pending) { pending = null; refresh(); return; }
+    if (!links.length) { toast("No hay nada que deshacer"); return; }
+    removeLink(links[links.length - 1], "↶ Última conexión deshecha");
+  };
+  tools.querySelector('[data-act="reset"]').onclick = () => {
+    if (finished) return;
+    links = []; pending = null; refresh(); toast("Todos los cables quitados 🧹");
+  };
+  tools.querySelector('[data-act="help"]').onclick = () => { legend.hidden = !legend.hidden; };
 
   stage.appendChild(card);
   finishButton(stage);
+  refresh();
+  window.addEventListener("resize", drawLinks);
 }
 
 /* ---------- ENGINE: quiz (escenario + opción múltiple) ---------- */
@@ -1794,9 +1855,9 @@ function renderPhishingEngine(stage, cfg) {
    ============================================================ */
 const SANDBOX_DEVICES = ["pc", "tablet", "phone", "printer", "router", "switchd", "tv", "speaker", "camera", "server"];
 const SANDBOX_CATEGORIES = [
-  { key: "network", label: "Dispositivos de red", icon: "🌐", devices: ["router", "switchd", "server"] },
-  { key: "end",     label: "Dispositivos finales", icon: "💻", devices: ["pc", "tablet", "phone", "printer", "tv", "speaker", "camera"] },
-  { key: "conn",    label: "Conexiones", icon: "🔌", devices: null },
+  { key: "network", label: "Dispositivos de red", icon: "🌐", devices: ["router", "switchd", "server", "ont"] },
+  { key: "end",     label: "Dispositivos finales", icon: "💻", devices: ["pc", "tablet", "phone", "printer", "tv", "speaker", "camera", "keyboard", "headset"] },
+  { key: "help",    label: "¿Qué es cada conector?", icon: "❓", devices: null },
 ];
 let sbCounter = 0;
 let sbLinks = []; // {a:{devId,portId}, b:{devId,portId}, tool}
@@ -1834,9 +1895,22 @@ async function exportSandboxPNG() {
 
   const wrap = document.querySelector(".pt-canvas-wrap");
   const wrapRect = wrap.getBoundingClientRect();
-  const W = Math.round(wrapRect.width);
+  const W = Math.max(Math.round(wrapRect.width), 640);
   const H = Math.round(wrapRect.height);
-  const headerH = 70;
+  // cabecera: se calcula su alto según las líneas de texto que quepan
+  const measure = document.createElement("canvas").getContext("2d");
+  function wrapLines(text, font, maxW) {
+    measure.font = font;
+    const words = text.split(" "); const lines = []; let line = "";
+    words.forEach(w => { const t = line ? line + " " + w : w; if (measure.measureText(t).width > maxW && line) { lines.push(line); line = w; } else line = t; });
+    if (line) lines.push(line);
+    return lines;
+  }
+  const FONT_SUB = "13px 'Segoe UI', Arial, sans-serif";
+  const subText = "Nombre: " + (state.name || "—") + "  ·  Curso: " + (state.course ? state.course + "º" : "—") + "  ·  Fecha: " + new Date().toLocaleDateString() +
+                  "  ·  Dispositivos: " + deviceEls.length + "  ·  Conexiones: " + sbLinks.length;
+  const subLines = wrapLines(subText, FONT_SUB, W - 32);
+  const headerH = 40 + subLines.length * 18 + 8;
   const scale = 2;
 
   const out = document.createElement("canvas");
@@ -1856,13 +1930,10 @@ async function exportSandboxPNG() {
   ctx.fillStyle = "#ffffff";
   ctx.font = "bold 18px 'Segoe UI', Arial, sans-serif";
   ctx.fillText("🛰️ NetKids · " + redName, 16, 28);
-  ctx.font = "13px 'Segoe UI', Arial, sans-serif";
-  const sub = "Nombre: " + (state.name || "—") +
-              "     ·     Curso: " + (state.course ? state.course + "º" : "—") +
-              "     ·     Fecha: " + new Date().toLocaleDateString() +
-              "     ·     Dispositivos: " + deviceEls.length +
-              "     ·     Conexiones: " + sbLinks.length;
-  ctx.fillText(sub, 16, 50);
+  let ty = 50;
+  ctx.font = FONT_SUB;
+  subLines.forEach(l => { ctx.fillText(l, 16, ty); ty += 18; });
+
 
   // zona de trabajo (desplazada bajo la cabecera)
   ctx.save();
@@ -1885,7 +1956,8 @@ async function exportSandboxPNG() {
     ctx.strokeStyle = colorForTool(link.tool);
     ctx.lineWidth = 3; ctx.lineCap = "round";
     ctx.setLineDash(isWirelessTool(link.tool) ? [6, 5] : []);
-    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    const sag = 34 + Math.hypot(x2 - x1, y2 - y1) * 0.18;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.bezierCurveTo(x1, y1 + sag, x2, y2 + sag, x2, y2); ctx.stroke();
     ctx.setLineDash([]);
     [[x1, y1], [x2, y2]].forEach(([x, y]) => {
       ctx.fillStyle = "#22c55e"; ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 1.5;
@@ -1911,7 +1983,7 @@ async function exportSandboxPNG() {
 
   ctx.restore();
 
-  const safe = s => (s || "").toString().replace(/[^a-z0-9áéíóúñ _-]/gi, "").trim().replace(/\s+/g, "_");
+  const safe = s => (s || "").toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9 _-]/gi, "").trim().replace(/\s+/g, "_").replace(/_+/g, "_");
   const fname = "NetKids_" + (state.course || "") + "_" + (safe(state.name) || "alumno") + "_" + (safe(redName) || "red") + ".png";
   out.toBlob(blob => {
     const a = document.createElement("a");
@@ -1955,10 +2027,11 @@ function renderSandbox() {
 
   // Lienzo: aceptar arrastre de dispositivos (enlazar una sola vez)
   const canvas = document.getElementById("sandbox-canvas");
+  const canvasWrap = canvas.parentElement;
   if (!canvas.dataset.bound) {
     canvas.dataset.bound = "1";
-    canvas.addEventListener("dragover", e => e.preventDefault());
-    canvas.addEventListener("drop", e => {
+    canvasWrap.addEventListener("dragover", e => e.preventDefault());
+    canvasWrap.addEventListener("drop", e => {
       e.preventDefault();
       const data = e.dataTransfer.getData("text/plain");
       if (data && data.startsWith("tray:")) {
@@ -1968,7 +2041,7 @@ function renderSandbox() {
       }
     });
     // modo borrar: tocar cerca de un cable lo elimina
-    canvas.addEventListener("pointerdown", e => {
+    canvasWrap.addEventListener("pointerdown", e => {
       if (sbMode !== "delete") return;
       if (e.target.closest(".sb-device")) return;
       const cr = canvas.getBoundingClientRect();
@@ -2000,6 +2073,7 @@ function renderSandbox() {
   // Herramientas laterales: seleccionar / borrar
   const toolsEl = document.getElementById("pt-tools");
   toolsEl.querySelectorAll(".pt-tool").forEach(b => {
+    if (b.dataset.act === "undo") { b.onclick = sbUndo; return; }
     b.classList.toggle("active", b.dataset.mode === "select");
     b.onclick = () => {
       sbMode = b.dataset.mode;
@@ -2012,6 +2086,7 @@ function renderSandbox() {
     };
   });
 
+  sbDefaultHint();
   renderSavedDesigns();
   const exBtn = document.getElementById("btn-sandbox-export");
   if (exBtn) exBtn.onclick = exportSandboxPNG;
@@ -2022,12 +2097,9 @@ function renderModels(catKey) {
   const tray = document.getElementById("device-tray");
   tray.innerHTML = "";
   const cat = SANDBOX_CATEGORIES.find(c => c.key === catKey);
-  if (catKey === "conn") {
+  if (catKey === "help") {
     tray.classList.add("conn-mode");
-    renderCableToolbar(tray, key => {
-      sbActiveTool = key;
-      if (sbPending) { sbPending.el.classList.remove("pending"); sbPending = null; }
-    }, null);
+    tray.innerHTML = `<div class="cable-legend in-tray">${connectorLegendHTML()}</div>`;
     return;
   }
   tray.classList.remove("conn-mode");
@@ -2046,10 +2118,10 @@ function renderModels(catKey) {
 function addSbDeviceCascade(key) {
   const canvas = document.getElementById("sandbox-canvas");
   const w = canvas.clientWidth || 320;
-  const cols = Math.max(3, Math.floor(w / 110));
+  const cols = Math.max(2, Math.floor((w - 24) / 165));
   const i = sbAddIndex++;
-  const x = 24 + (i % cols) * 96;
-  const y = 24 + (Math.floor(i / cols) % 4) * 104;
+  const x = 16 + (i % cols) * 165;
+  const y = 16 + (Math.floor(i / cols) % 4) * 118;
   addSbDevice(key, x, y);
 }
 
@@ -2071,7 +2143,8 @@ function addSbDevice(key, x, y) {
 
   const portList = document.createElement("div");
   portList.className = "port-list";
-  portsForDisplay(key).forEach(p => portList.appendChild(makePortDot(id, p, handleSbPortClick)));
+  portList.classList.add("with-labels");
+  portsForDisplay(key).forEach(p => portList.appendChild(makeCaptionedPort(id, p, handleSbPortClick)));
   el.appendChild(portList);
 
   let dragging = false, ox = 0, oy = 0;
@@ -2098,44 +2171,77 @@ function deleteSbDevice(id) {
   const el = document.getElementById(id);
   if (el) el.remove();
   if (sbPending && sbPending.devId === id) sbPending = null;
+  sbSyncPorts();
   drawSbLinks();
   toast("Aparato eliminado 🗑️");
 }
 
+function sbLinksOn(devId, portId) {
+  return sbLinks.filter(l => (l.a.devId === devId && l.a.portId === portId) || (l.b.devId === devId && l.b.portId === portId));
+}
+function sbSyncPorts() {
+  document.querySelectorAll(".sb-device .port-dot").forEach(dot => {
+    dot.classList.toggle("used", sbLinksOn(dot.dataset.node, dot.dataset.port).length > 0);
+  });
+}
+function sbSetHint(text) {
+  const h = document.querySelector(".pt-hint");
+  if (h) h.innerHTML = text;
+}
+function sbDefaultHint() {
+  sbSetHint("<b>Paso 1:</b> toca un puerto de un aparato · <b>Paso 2:</b> toca el puerto del otro aparato. Toca un cable para quitarlo · ↶ deshace");
+}
+function sbRemoveLink(link, msg) {
+  sbLinks = sbLinks.filter(l => l !== link);
+  sbSyncPorts(); drawSbLinks();
+  if (msg) toast(msg);
+}
+function sbUndo() {
+  if (sbPending) { sbPending.el.classList.remove("pending"); sbPending = null; sbDefaultHint(); return; }
+  if (!sbLinks.length) { toast("No hay nada que deshacer"); return; }
+  sbRemoveLink(sbLinks[sbLinks.length - 1], "↶ Última conexión deshecha");
+}
 function handleSbPortClick(devId, portId, type, dotEl) {
   if (sbMode === "delete") {
     sbLinks = sbLinks.filter(l => !((l.a.devId === devId && l.a.portId === portId) || (l.b.devId === devId && l.b.portId === portId)));
-    dotEl.classList.remove("used");
-    drawSbLinks();
+    sbSyncPorts(); drawSbLinks();
     return;
   }
-  if (!sbActiveTool) { toast("Elige primero una conexión en la pestaña 🔌 Conexiones"); return; }
+  const key = document.getElementById(devId).dataset.key;
+  const label = DEVICE_LIB[key].label;
   if (!sbPending) {
-    sbPending = { devId, portId, type, el: dotEl };
+    if (sbLinksOn(devId, portId).length >= portCapacity(key, type)) {
+      toast("Ese puerto ya tiene un cable. Toca el cable para quitarlo o pulsa ↶.");
+      dotEl.classList.add("flash-bad"); setTimeout(() => dotEl.classList.remove("flash-bad"), 500);
+      return;
+    }
+    sbPending = { devId, portId, type, el: dotEl, label };
     dotEl.classList.add("pending");
+    sbSetHint(`<b>Paso 2:</b> toca el puerto del <b>otro aparato</b>. Has elegido <b>${label} · ${portShortLabel({ type })}</b> (tócalo otra vez para cancelar)`);
     return;
   }
-  if (sbPending.devId === devId && sbPending.portId === portId) {
-    dotEl.classList.remove("pending");
-    sbPending = null;
-    return;
-  }
-  const ok = canConnect(sbPending.type, type, sbActiveTool);
-  sbPending.el.classList.remove("pending");
-  if (ok) {
-    sbLinks.push({ a: { devId: sbPending.devId, portId: sbPending.portId }, b: { devId, portId }, tool: sbActiveTool });
-    sbPending.el.classList.add("used");
-    dotEl.classList.add("used");
-    toast("¡Conectado correctamente! ✅");
-    drawSbLinks();
-  } else {
-    const pEl = sbPending.el;
-    dotEl.classList.add("flash-bad");
-    pEl.classList.add("flash-bad");
-    setTimeout(() => { dotEl.classList.remove("flash-bad"); pEl.classList.remove("flash-bad"); }, 500);
-    toast(mismatchMessage(sbPending.type, type, sbActiveTool));
-  }
+  const pend = sbPending;
+  pend.el.classList.remove("pending");
   sbPending = null;
+  sbDefaultHint();
+  if (pend.devId === devId && pend.portId === portId) return;
+  const fail = msg => {
+    dotEl.classList.add("flash-bad"); pend.el.classList.add("flash-bad");
+    setTimeout(() => { dotEl.classList.remove("flash-bad"); pend.el.classList.remove("flash-bad"); }, 500);
+    toast(msg);
+  };
+  if (pend.devId === devId) return fail("Un aparato no se conecta consigo mismo: elige un puerto de OTRO aparato.");
+  if (sbLinksOn(devId, portId).length >= portCapacity(key, type)) return fail("Ese puerto ya está ocupado. Cada puerto de cable solo admite un cable.");
+  if (sbLinks.some(l => (l.a.devId === pend.devId && l.b.devId === devId) || (l.b.devId === pend.devId && l.a.devId === devId)))
+    return fail("Esos dos aparatos ya están conectados entre sí.");
+  const tool = inferTool(pend.type, type);
+  if (!tool) return fail(mismatchText(pend.type, type));
+  const wp = wanProblem(document.getElementById(pend.devId).dataset.key, pend.portId, key, portId);
+  if (wp) return fail(wp);
+  sbLinks.push({ a: { devId: pend.devId, portId: pend.portId }, b: { devId, portId }, tool });
+  sbSyncPorts();
+  toast(`¡Conectado con ${toolLabel(tool)}! ✅`);
+  drawSbLinks();
 }
 
 function drawSbLinks() {
@@ -2154,27 +2260,20 @@ function drawSbLinks() {
     const x2 = rb.left + rb.width / 2 - canvasRect.left, y2 = rb.top + rb.height / 2 - canvasRect.top;
     const wireless = isWirelessTool(link.tool);
 
-    // línea ancha (transparente) para poder tocar y borrar el cable en modo borrar
-    const hit = document.createElementNS(NS, "line");
-    hit.setAttribute("x1", x1); hit.setAttribute("y1", y1);
-    hit.setAttribute("x2", x2); hit.setAttribute("y2", y2);
-    hit.setAttribute("stroke", "#000");
-    hit.setAttribute("stroke-opacity", "0");
-    hit.setAttribute("stroke-width", "16");
-    hit.style.pointerEvents = (sbMode === "delete") ? "stroke" : "none";
+    // cable curvo (cuelga por debajo) para que no pase por encima de los demás puertos
+    const len = Math.hypot(x2 - x1, y2 - y1);
+    const sag = 34 + len * 0.18;
+    const d = `M${x1},${y1} C${x1},${y1 + sag} ${x2},${y2 + sag} ${x2},${y2}`;
+    const hit = document.createElementNS(NS, "path");
+    hit.setAttribute("d", d); hit.setAttribute("fill", "none");
+    hit.setAttribute("stroke", "#000"); hit.setAttribute("stroke-opacity", "0"); hit.setAttribute("stroke-width", "18");
+    hit.style.pointerEvents = "stroke";
     hit.style.cursor = "pointer";
-    hit.addEventListener("click", () => {
-      if (sbMode !== "delete") return;
-      sbLinks = sbLinks.filter(l => l !== link);
-      elA.classList.remove("used"); elB.classList.remove("used");
-      drawSbLinks();
-      toast("Cable eliminado 🗑️");
-    });
+    hit.addEventListener("click", () => sbRemoveLink(link, "Cable quitado 🗑️"));
     svg.appendChild(hit);
 
-    const line = document.createElementNS(NS, "line");
-    line.setAttribute("x1", x1); line.setAttribute("y1", y1);
-    line.setAttribute("x2", x2); line.setAttribute("y2", y2);
+    const line = document.createElementNS(NS, "path");
+    line.setAttribute("d", d); line.setAttribute("fill", "none");
     line.setAttribute("stroke", colorForTool(link.tool));
     line.setAttribute("stroke-width", "3");
     line.setAttribute("stroke-linecap", "round");
@@ -2235,6 +2334,7 @@ function renderSavedDesigns() {
 }
 
 
+
 /* ============================================================
    INIT / EVENTOS
    ============================================================ */
@@ -2272,6 +2372,7 @@ function init() {
     renderMap();
     showScreen("screen-map");
   });
+
   document.getElementById("btn-sandbox-clear").addEventListener("click", clearSandbox);
   document.getElementById("btn-sandbox-savebtn").addEventListener("click", saveSandboxDesign);
   document.getElementById("btn-sandbox-save").addEventListener("click", saveSandboxDesign);

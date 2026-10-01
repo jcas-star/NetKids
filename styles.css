@@ -422,3 +422,45 @@ body{
 .results-fill{height:100%;background:linear-gradient(90deg,var(--accent-2),var(--good));width:0%;transition:width .4s;}
 .results-stats{font-size:.76rem;color:var(--ink-soft);}
 .results-summary .btn{align-self:flex-start;margin-top:4px;}
+
+/* ===== v9 (octubre 2026): conexión en dos toques, deshacer y puertos con nombre ===== */
+.step-bar{background:#eef2ff;color:#312e81;border:2px solid #c7d2fe;border-radius:12px;padding:10px 14px;font-size:.88rem;margin:6px 0 4px;line-height:1.4;}
+.step-bar.waiting{background:#fffbeb;border-color:#f59e0b;color:#78350f;}
+.step-bar.done{background:#ecfdf5;border-color:#22c55e;color:#065f46;}
+.step-bar .muted{opacity:.8;font-size:.82rem;}
+.connect-tools{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px;}
+.connect-tools .btn{padding:9px 14px;font-size:.84rem;}
+.mission-controls .btn{padding:10px 16px;}
+.topo-board-wrap{position:relative;}
+.topo-board{position:relative;z-index:1;}
+.topo-svg{z-index:2;}
+.topo-device{width:auto;min-width:132px;}
+.device-back-panel .d-glyph svg{width:56px;height:56px;display:block;margin:0 auto;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));}
+.device-back-panel .port-list.with-labels{gap:10px;margin-top:10px;}
+.device-back-panel .port-list.with-labels .port-dot{width:46px;height:40px;}
+.device-back-panel .port-list.with-labels .port-dot[data-type="wifi"],
+.device-back-panel .port-list.with-labels .port-dot[data-type="bluetooth"]{width:40px;height:40px;}
+.port-caption{font-size:.68rem;}
+.cable-legend .legend-row .tool-plug{width:46px;height:38px;}
+.cable-legend.in-tray{background:transparent;box-shadow:none;flex-direction:row;flex-wrap:wrap;gap:10px;padding:4px;margin:0;}
+.cable-legend.in-tray .legend-row{background:#1e293b;max-width:300px;}
+/* simulador: puertos más grandes para el dedo y con su nombre */
+.sb-device .port-list.with-labels{gap:4px;margin-top:2px;}
+.sb-device .port-list.with-labels .port-dot{width:30px;height:26px;padding:2px;border-width:2px;}
+.sb-device .port-list.with-labels .port-dot[data-type="wifi"],
+.sb-device .port-list.with-labels .port-dot[data-type="bluetooth"]{width:28px;height:28px;}
+.sb-device .port-item{gap:1px;}
+.sb-device .port-caption{font-size:.55rem;color:#1e293b;max-width:44px;line-height:1;}
+.pt-hint{max-width:92%;white-space:normal;text-align:center;font-size:.74rem;}
+.pt-tool[data-act="undo"]{font-size:1.4rem;font-weight:700;color:#1e293b;}
+.cable-legend[hidden]{display:none!important;}
+/* los cables van por debajo de los aparatos: así nunca tapan un puerto */
+.topo-svg{z-index:2;}
+.topo-board{z-index:1;}
+.topo-board{row-gap:70px;padding-bottom:40px;}
+.pt-canvas-wrap .sandbox-lines{z-index:1;}
+.pt-canvas-wrap .sandbox-canvas{z-index:2;pointer-events:none;}
+.pt-canvas-wrap .sandbox-canvas .sb-device{pointer-events:auto;}
+.pt-canvas-wrap .pt-hint{z-index:3;pointer-events:none;}
+
+.sb-device .port-list.with-labels{gap:6px;} .sb-device .port-caption{max-width:none;white-space:nowrap;}
