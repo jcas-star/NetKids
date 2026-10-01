@@ -443,7 +443,7 @@ const MISSIONS = [
   // ---------- MÓDULO 1 ----------
   {
     id: "m1-1", module: 1, icon: "🔗", title: "Conecta los dispositivos",
-    short: "Arrastra cada aparato a su tipo de conexión",
+    short: "Une los puertos de cada aparato con el que le corresponde",
     engine: "connect",
     build(course) {
       const sets = {
@@ -2118,10 +2118,10 @@ function renderModels(catKey) {
 function addSbDeviceCascade(key) {
   const canvas = document.getElementById("sandbox-canvas");
   const w = canvas.clientWidth || 320;
-  const cols = Math.max(2, Math.floor((w - 24) / 165));
+  const cols = Math.max(2, Math.floor((w - 24) / 235));
   const i = sbAddIndex++;
-  const x = 16 + (i % cols) * 165;
-  const y = 16 + (Math.floor(i / cols) % 4) * 118;
+  const x = 16 + (i % cols) * 235;
+  const y = 16 + (Math.floor(i / cols) % 4) * 125;
   addSbDevice(key, x, y);
 }
 
