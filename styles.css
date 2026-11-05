@@ -464,3 +464,11 @@ body{
 .pt-canvas-wrap .pt-hint{z-index:3;pointer-events:none;}
 
 .sb-device .port-list.with-labels{gap:6px;} .sb-device .port-caption{max-width:none;white-space:nowrap;}
+
+/* redes guardadas: abrir / eliminar */
+.saved-name{font-weight:700;}
+.saved-actions{display:flex;gap:6px;margin-top:4px;}
+.saved-btn{border:none;border-radius:8px;padding:6px 10px;font-family:inherit;font-size:.72rem;font-weight:700;cursor:pointer;background:#2563eb;color:#fff;touch-action:manipulation;}
+.saved-btn:hover{background:#1d4ed8;}
+.saved-btn-del{background:#7f1d1d;}
+.saved-btn-del:hover{background:#991b1b;}

@@ -2164,6 +2164,7 @@ function addSbDevice(key, x, y) {
   body.addEventListener("pointerup", () => { dragging = false; });
 
   canvas.appendChild(el);
+  return id;
 }
 
 function deleteSbDevice(id) {
@@ -2308,13 +2309,47 @@ function clearSandbox() {
 function saveSandboxDesign() {
   const name = document.getElementById("sandbox-design-name").value.trim();
   if (!name) { toast("Ponle un nombre a tu red primero"); return; }
-  const devices = [...document.querySelectorAll(".sb-device")].map(el => el.dataset.key);
-  if (devices.length === 0) { toast("Añade al menos un dispositivo"); return; }
-  state.sandboxDesigns.push({ name, deviceCount: devices.length, linkCount: sbLinks.length, date: new Date().toLocaleDateString() });
+  const deviceEls = [...document.querySelectorAll("#sandbox-canvas .sb-device")];
+  if (deviceEls.length === 0) { toast("Añade al menos un dispositivo"); return; }
+  const devices = deviceEls.map(el => ({ id: el.id, key: el.dataset.key, x: parseFloat(el.style.left) || el.offsetLeft || 0, y: parseFloat(el.style.top) || el.offsetTop || 0 }));
+  const links = sbLinks.map(l => ({ a: { ...l.a }, b: { ...l.b }, tool: l.tool }));
+  const design = { name, deviceCount: devices.length, linkCount: links.length, date: new Date().toLocaleDateString(), devices, links };
+  if (!state.sandboxDesigns) state.sandboxDesigns = [];
+  const idx = state.sandboxDesigns.findIndex(d => d.name === name);
+  if (idx >= 0) { state.sandboxDesigns[idx] = design; toast("Red actualizada 💾"); }
+  else { state.sandboxDesigns.push(design); toast("¡Red guardada! 💾"); }
   saveState();
-  document.getElementById("sandbox-design-name").value = "";
-  toast("¡Red guardada! 💾");
   renderSavedDesigns();
+}
+
+function openSandboxDesign(design) {
+  if (!design.devices) {
+    toast("Esta red se guardó con una versión antigua y no tiene el plano 😕");
+    return;
+  }
+  clearSandbox();
+  const idMap = {};
+  design.devices.forEach(d => {
+    if (!DEVICE_LIB[d.key]) return;
+    idMap[d.id] = addSbDevice(d.key, d.x, d.y);
+  });
+  sbAddIndex = design.devices.length;
+  (design.links || []).forEach(l => {
+    const a = idMap[l.a.devId], b = idMap[l.b.devId];
+    if (a && b) sbLinks.push({ a: { devId: a, portId: l.a.portId }, b: { devId: b, portId: l.b.portId }, tool: l.tool });
+  });
+  document.getElementById("sandbox-design-name").value = design.name;
+  sbSyncPorts();
+  drawSbLinks();
+  toast("Red «" + design.name + "» abierta 📂");
+}
+
+function deleteSandboxDesign(design) {
+  if (!confirm("¿Eliminar la red «" + design.name + "»? No se puede deshacer.")) return;
+  state.sandboxDesigns = (state.sandboxDesigns || []).filter(d => d !== design);
+  saveState();
+  renderSavedDesigns();
+  toast("Red eliminada 🗑️");
 }
 
 function renderSavedDesigns() {
@@ -2328,7 +2363,23 @@ function renderSavedDesigns() {
   designs.slice().reverse().forEach(d => {
     const item = document.createElement("div");
     item.className = "saved-item";
-    item.innerHTML = `<span>📁 ${d.name}</span><span>${d.deviceCount} disp. · ${d.linkCount} conex. · ${d.date}</span>`;
+    const name = document.createElement("span");
+    name.className = "saved-name";
+    name.textContent = "📁 " + d.name;
+    const meta = document.createElement("span");
+    meta.textContent = `${d.deviceCount} disp. · ${d.linkCount} conex. · ${d.date}`;
+    const actions = document.createElement("div");
+    actions.className = "saved-actions";
+    const bOpen = document.createElement("button");
+    bOpen.className = "saved-btn";
+    bOpen.textContent = "📂 Abrir";
+    bOpen.onclick = () => openSandboxDesign(d);
+    const bDel = document.createElement("button");
+    bDel.className = "saved-btn saved-btn-del";
+    bDel.textContent = "🗑️ Eliminar";
+    bDel.onclick = () => deleteSandboxDesign(d);
+    actions.append(bOpen, bDel);
+    item.append(name, meta, actions);
     list.appendChild(item);
   });
 }
